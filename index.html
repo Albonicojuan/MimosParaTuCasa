@@ -789,6 +789,29 @@
             
             renderProductList();
         });
+
+        // Import the functions you need from the SDKs you need
+            import { initializeApp } from "firebase/app";
+            import { getAnalytics } from "firebase/analytics";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+            apiKey: "AIzaSyBl8kTYcAR27JjELPn_mfnkFuNtggBwTpM",
+            authDomain: "mimos-hogar.firebaseapp.com",
+            projectId: "mimos-hogar",
+            storageBucket: "mimos-hogar.firebasestorage.app",
+            messagingSenderId: "172064316587",
+            appId: "1:172064316587:web:d3e75f097bd90bccc4ebee",
+            measurementId: "G-CYGJK704FB"
+};
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+
     </script>
 </body>
 </html>
