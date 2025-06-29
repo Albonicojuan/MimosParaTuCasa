@@ -16,8 +16,7 @@
             --dark: #292F36;
             --gradient: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
         }
-        
-        
+
         /* Modal Login Estilizado */
         .login-modal {
             position: fixed;
@@ -32,7 +31,7 @@
             z-index: 9999;
             backdrop-filter: blur(5px);
         }
-        
+
         .login-content {
             background: white;
             border-radius: 15px;
@@ -42,22 +41,22 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             animation: fadeInUp 0.5s;
         }
-        
+
         .login-header {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 20px;
             text-align: center;
         }
-        
+
         .login-body {
             padding: 30px;
         }
-        
+
         .form-floating label {
             color: #6c757d;
         }
-        
+
         .btn-login {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
@@ -66,14 +65,14 @@
             width: 100%;
             margin-top: 10px;
         }
-        
+
         .login-footer {
             text-align: center;
             padding: 15px;
             background-color: #f8f9fa;
             border-top: 1px solid #eee;
         }
-        
+
         /* Animaciones */
         @keyframes fadeInUp {
             from {
@@ -85,13 +84,13 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             20%, 60% { transform: translateX(-5px); }
             40%, 80% { transform: translateX(5px); }
         }
-        
+
         .shake {
             animation: shake 0.5s;
         }
@@ -145,10 +144,10 @@
             max-height: 60px;
             width: auto;
         }
-        
+
         /* Product Image Preview */
         #productImagePreview {
-            max-height: 250px;            
+            max-height: 250px;
             width: auto;
             object-fit: contain;
             margin-top: 10px;
@@ -156,8 +155,6 @@
             border-radius: 4px;
             padding: 5px;
         }
-        
-        
     </style>
 </head>
 <body>
@@ -166,7 +163,6 @@
         <div class="container">
             <a class="navbar-brand" href="#" style="display: flex; align-items: center;">
                 <img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules" style="height: 40px; margin-right: 10px; border-radius: 60%;">
-                
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -174,21 +170,14 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index2.html" onclick="showUserSection()">Home</a>
+                        <a class="nav-link active" href="#" onclick="showUserSection()">Home</a>
                     </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#" id="adminNavLink" onclick="showAdminSection()">Admin</a>
-                    </li> 
-                -->
                 </ul>
-                <div  id="adminboton" class="d-flex" >
-                    <button class="btn btn-outline-light position-relative" id="botonlogin" >
-                        <a class="nav-link" href="#" id="adminNavLink" onclick="showAdminSection()">Admin</a>    
+                <div class="d-flex">
+                    <button class="btn btn-outline-light position-relative" id="botonlogin">
+                        <a class="nav-link" href="#" onclick="showAdminSection()">Admin</a>
                     </button>
-                <div  class="d-flex" >
-                    
-                    
-                    <button class="btn btn-outline-light position-relative" onclick="toggleCart()" >
+                    <button class="btn btn-outline-light position-relative" onclick="toggleCart()">
                         <i class="fas fa-shopping-cart me-1"></i> Carrito
                         <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                     </button>
@@ -201,8 +190,7 @@
     <div id="loginModal" class="login-modal" style="display: none;">
         <div class="login-content">
             <div class="login-header">
-                <a href=""><img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules" style="height: 40px; margin-right: 10px; border-radius: 60%;">           
-                    </a>
+                <a href=""><img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules" style="height: 40px; margin-right: 10px; border-radius: 60%;"></a>
                 <h3><i class="fas fa-lock me-2"></i> Acceso Administrador</h3>
                 <p class="mb-0">Ingresa tus credenciales</p>
             </div>
@@ -224,20 +212,16 @@
             </div>
             <div class="login-footer">
                 <small>Acceso restringido al personal autorizado</small>
-                <!-- <div class="mt-2 text-muted">
-                    <small>Usuario demo: admin@mitienda.com</small><br>
-                    <small>Contraseña: admin123</small>
-                </div>-->
             </div>
         </div>
     </div>
 
     <!-- User Section -->
     <div id="userSection" class="container py-5">
-                <div class="imagen">
-                    <img src="src/sabanas-algodon.jpg" alt="Accesorios de moda organizados sobre fondo blanco" class="d-block w-100">
-                </div>
-        
+        <div class="imagen">
+            <img src="src/sabanas-algodon.jpg" alt="Accesorios de moda organizados sobre fondo blanco" class="d-block w-100">
+        </div>
+
         <h2 class="text-center mb-5">Nuestros Productos</h2>
         <!-- Filtros -->
         <div class="row mb-4">
@@ -248,8 +232,8 @@
                     <option value="Frazadas">Frazadas</option>
                     <option value="Almohadas">Almohadas</option>
                     <option value="Cortinas">Cortinas</option>
-                    <option value="Cortinas">Manteles</option>
-                    <option value="Cortinas">Otros</option>
+                    <option value="Manteles">Manteles</option>
+                    <option value="Otros">Otros</option>
                 </select>
             </div>
             <div class="col-md-3 mb-3">
@@ -260,23 +244,9 @@
                     <option value="10000-20000">$10,000 - $20,000</option>
                     <option value="20000+">Más de $20,000</option>
                 </select>
-                
-            
             </div>
             <div class="col-md-3 mb-3">
-                 <input type="text" class="form-control" placeholder="Buscar productos..." id="searchFilter">
-
-                
-            </div>
-            <div class="col-md-3 mb-3">
-                <!--<select class="form-select" id="sizeFilter">
-                    <option value="all">Plazas</option>
-                    <option value="1 plaza">1 plaza</option>
-                    <option value="1 Plaza 1/2">1 Plaza 1/2</option>
-                    <option value="2 plazas">2 plazas</option>
-                    <option value="2 Plaza 1/2">2 Plaza 1/2</option>
-                </select>
-                -->
+                <input type="text" class="form-control" placeholder="Buscar productos..." id="searchFilter">
             </div>
         </div>
 
@@ -326,7 +296,7 @@
                 <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
             </button>
         </div>
-        
+
         <div class="row mb-4">
             <div class="col-md-6">
                 <div class="card mb-4">
@@ -355,20 +325,10 @@
                                         <option value="Frazadas">Frazadas</option>
                                         <option value="Almohadas">Almohadas</option>
                                         <option value="Cortinas">Cortinas</option>
-                                        <option value="Cortinas">Manteles</option>
-                                        <option value="Cortinas">Otros</option>
+                                        <option value="Manteles">Manteles</option>
+                                        <option value="Otros">Otros</option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 mb-3">
-                                     <label class="form-label">Plazas</label>
-                                    <select class="form-select" id="sizeFilter" required>
-                                        <option value="1 Plaza">1 Plaza</option>
-                                        <option value="1 Plaza 1/2">1 Plaza 1/2</option>
-                                        <option value="2 Plaza">2 Plaza</option>
-                                        <option value="2 Plaza 1/2">2 Plaza 1/2</option>
-                                    </select>
-                                
-                                </div>                            
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Imagen</label>
@@ -382,7 +342,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header bg-success text-white">
@@ -408,207 +368,82 @@
                 </div>
             </div>
         </div>
-        
-        
     </div>
+
     <!-- FOOTER / BANNER FINAL LINDO -->
-  <footer class="mt-5 text-white" style="background: var(--gradient);">
-    <div class="container py-4 text-center">
-      <div class="row">
-        <!-- Instagram -->
-        <div class="col-md-4 mb-3 mb-md-0">
-          <h5><i class="fab fa-instagram me-2"></i> Seguinos en Instagram</h5>
-          <a href="https://www.instagram.com/mimos.hogar/" target="_blank" class="text-white text-decoration-none">
-            @mimos.hogar
-          </a>
-        </div>
+    <footer class="mt-5 text-white" style="background: var(--gradient);">
+        <div class="container py-4 text-center">
+            <div class="row">
+                <!-- Instagram -->
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5><i class="fab fa-instagram me-2"></i> Seguinos en Instagram</h5>
+                    <a href="https://www.instagram.com/mimos.hogar/" target="_blank" class="text-white text-decoration-none">
+                        @mimos.hogar
+                    </a>
+                </div>
 
-        <!-- Medios de pago -->
-        <div class="col-md-4 mb-3 mb-md-0">
-          <h5><i class="fas fa-credit-card me-2"></i> Medios de pago</h5>
-          <p class="mb-0">📱 Transferencias / MercadoPago</p>
-          <p class="mb-0">💵 Efectivo </p>
-        </div>
+                <!-- Medios de pago -->
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5><i class="fas fa-credit-card me-2"></i> Medios de pago</h5>
+                    <p class="mb-0">📱 Transferencias / MercadoPago</p>
+                    <p class="mb-0">💵 Efectivo </p>
+                </div>
 
-        <!-- Contacto -->
-        <div class="col-md-4">
-          <h5><i class="fas fa-phone-alt me-2"></i> Contactanos</h5>
-          <p class="mb-1">📞 +54 9 381 457-1285</p>
-          <p class="mb-0">📍 San Miguel de Tucumán</p>
-        </div>
-      </div>
-      <hr class="bg-white mt-4">
-      <small>&copy; 2025 Mimos Para Tu Casa. Todos los derechos reservados.</small>
-    </div>
-  </footer>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBl8kTYcAR27JjELPn_mfnkFuNtggBwTpM",
-      authDomain: "mimos-hogar.firebaseapp.com",
-      projectId: "mimos-hogar",
-      storageBucket: "mimos-hogar.firebasestorage.app",
-      messagingSenderId: "172064316587",
-      appId: "1:172064316587:web:dcf630128f346023c4ebee",
-      measurementId: "G-FNP23M53WP"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getFirestore(app);
-
-    let products= [];
-    let cart= [];
-
-    async function loadProducts() {
-      const querySnapshot = await getDocs(collection(db, "products"));
-      products = [];
-      querySnapshot.forEach((docSnap) => {
-        products.push({ id: docSnap.id, ...docSnap.data() });
-      });
-      renderProductList();
-      renderAdminProductList();
-    }
-
-    async function saveProductToFirestore(product) {
-      const docRef = await addDoc(collection(db, "products"), product);
-      console.log("Producto guardado con ID:", docRef.id);
-      loadProducts();
-    }
-
-    async function deleteProduct(id) {
-      if (confirm("¿Eliminar este producto?")) {
-        await deleteDoc(doc(db, "products", id));
-        loadProducts();
-      }
-    }
-
-    function renderProductList() {
-      const container = document.getElementById("productContainer");
-      if (!container) return;
-      container.innerHTML = products.map(product => `
-        <div class="col-md-4 col-lg-3 mb-4">
-          <div class="card product-card h-100">
-            <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 200px; object-fit: contain;">
-            <div class="card-body d-flex flex-column">
-              <h5 class="card-title">${product.name}</h5>
-              <p class="card-text">${product.description}</p>
-              <p class="card-text fw-bold">AR$ ${product.price}</p>
-              <button class="btn btn-primary w-100" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
-                <i class="fas fa-cart-plus me-2"></i> Agregar
-              </button>
+                <!-- Contacto -->
+                <div class="col-md-4">
+                    <h5><i class="fas fa-phone-alt me-2"></i> Contactanos</h5>
+                    <p class="mb-1">📞 +54 9 381 457-1285</p>
+                    <p class="mb-0">📍 San Miguel de Tucumán</p>
+                </div>
             </div>
-          </div>
+            <hr class="bg-white mt-4">
+            <small>&copy; 2025 Mimos Para Tu Casa. Todos los derechos reservados.</small>
         </div>
-      `).join("");
-    }
+    </footer>
 
-    function renderAdminProductList() {
-      const container = document.getElementById("adminProductList");
-      if (!container) return;
-      container.innerHTML = products.map(product => `
-        <tr>
-          <td><img src="${product.image}" alt="${product.name}" class="img-thumbnail" style="height: 60px;"></td>
-          <td>${product.name}</td>
-          <td>AR$ ${product.price}</td>
-          <td>
-            <button class="btn btn-sm btn-danger" onclick="deleteProduct('${product.id}')">
-              <i class="fas fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      `).join("");
-    }
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
 
-    window.deleteProduct = deleteProduct;
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBl8kTYcAR27JjELPn_mfnkFuNtggBwTpM",
+            authDomain: "mimos-hogar.firebaseapp.com",
+            projectId: "mimos-hogar",
+            storageBucket: "mimos-hogar.firebasestorage.app",
+            messagingSenderId: "172064316587",
+            appId: "1:172064316587:web:dcf630128f346023c4ebee",
+            measurementId: "G-FNP23M53WP"
+        };
 
-    document.addEventListener("DOMContentLoaded", () => {
-      loadProducts();
-      const form = document.getElementById("productForm");
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
 
-      if (form) {
-        form.addEventListener("submit", e => {
-          e.preventDefault();
-          const product = {
-            name: document.getElementById("productName").value,
-            description: document.getElementById("productDescription").value,
-            price: parseFloat(document.getElementById("productPrice").value),
-            category: document.getElementById("productCategory").value,
-            image: document.getElementById("productImagePreview").src,
-            sizes: ["1 Plaza", "2 Plazas"]
-          };
-          saveProductToFirestore(product);
-          form.reset();
-          document.getElementById("productImagePreview").src = "https://placehold.co/300x200";
-        });
-
-        document.getElementById('productImage').addEventListener('change', function(e) {
-          const file = e.target.files[0];
-          if (file) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-              document.getElementById('productImagePreview').src = event.target.result;
-            }
-            reader.readAsDataURL(file);
-          }
-        });
-      }
-    });
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-  
-
-
-    <script>
-        // Simulación de credenciales válidas
+        // Global variables
+        let products = [];
+        let cart = [];
+        const WHATSAPP_NUMBER = '5493814594848';
         const ADMIN_CREDENTIALS = {
             email: "admin@mitienda.com",
             password: "admin123"
         };
-        
-        // Variables globales
-        let cart=[];
-        let products= JSON.parse(localStorage.getItem('products')) || [];
-        const WHATSAPP_NUMBER = '5493814594848';
-        let currentProductId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
 
-        // Mostrar modal de login
-        function showAdminSection() {
-            if (!isLoggedIn()) {
-                document.getElementById('loginModal').style.display = 'flex';
-                return;
-            }
-            
-            document.getElementById('userSection').style.display = 'none';
-            document.getElementById('adminSection').style.display = 'block';
-            renderAdminProductList();
-        }
-        
-        // Mostrar sección de usuario
-        function showUserSection() {
-            document.getElementById('userSection').style.display = 'block';
-            document.getElementById('adminSection').style.display = 'none';
-            document.getElementById('loginModal').style.display = 'none';
-            renderProductList();
-        }
-        
-        // Verificar sesión
+        // --- Authentication ---
         function isLoggedIn() {
             return localStorage.getItem('adminLoggedIn') === 'true';
         }
-        
-        // Login
+
         function loginAdmin() {
             const email = document.getElementById('adminEmail').value;
             const password = document.getElementById('adminPassword').value;
             const errorElement = document.getElementById('loginError');
-            
+
             if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
                 localStorage.setItem('adminLoggedIn', 'true');
                 document.getElementById('loginModal').style.display = 'none';
@@ -621,49 +456,122 @@
                 }, 500);
             }
         }
-        
-        // Logout
+
         function logoutAdmin() {
             localStorage.removeItem('adminLoggedIn');
             showUserSection();
         }
-        
-        // Funcionalidad de filtros
-        function filterProducts() {
-            const category = document.getElementById('categoryFilter').value;
-            const size = document.getElementById('sizeFilter').value;
-            const priceRange = document.getElementById('priceFilter').value;
-            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
-            
-            let filteredProducts = products;
-            
-            // Filtrar por categoría
-            if (category !== 'all') {
-                filteredProducts = filteredProducts.filter(product => product.category === category);
+
+        // --- UI Management ---
+        function showAdminSection() {
+            if (!isLoggedIn()) {
+                document.getElementById('loginModal').style.display = 'flex';
+                return;
             }
-            
-            // Filtrar por búsqueda
-            if (searchTerm) {
-                filteredProducts = filteredProducts.filter(product => 
-                    product.name.toLowerCase().includes(searchTerm) || 
-                    product.description?.toLowerCase().includes(searchTerm)
-                );
+
+            document.getElementById('userSection').style.display = 'none';
+            document.getElementById('adminSection').style.display = 'block';
+            loadProducts();
+        }
+
+        function showUserSection() {
+            document.getElementById('userSection').style.display = 'block';
+            document.getElementById('adminSection').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'none';
+            loadProducts();
+        }
+
+        // --- Product Management ---
+        async function loadProducts() {
+            try {
+                const querySnapshot = await getDocs(collection(db, "products"));
+                products = [];
+                querySnapshot.forEach((doc) => {
+                    products.push({ id: doc.id, ...doc.data() });
+                });
+                renderProductList();
+                renderAdminProductList();
+            } catch (error) {
+                console.error("Error loading products: ", error);
+                alert("Error al cargar los productos. Consulta la consola para más detalles.");
             }
-            
-            // Filtrar por rango de precio
-            if (priceRange !== 'all') {
-                const [min, max] = priceRange.split('-').map(Number);
-                if (priceRange.endsWith('+')) {
-                    filteredProducts = filteredProducts.filter(product => product.price > min);
-                } else {
-                    filteredProducts = filteredProducts.filter(product => product.price >= min && product.price <= max);
+        }
+
+        async function saveProductToFirestore(product) {
+            try {
+                // Upload image to Firebase Storage
+                const imageFile = document.getElementById('productImage').files[0];
+                const storageRef = ref(storage, `products/${imageFile.name}`);
+                await uploadBytes(storageRef, imageFile);
+                const imageUrl = await getDownloadURL(storageRef);
+
+                // Add product data to Firestore
+                const docRef = await addDoc(collection(db, "products"), {
+                    ...product,
+                    image: imageUrl
+                });
+
+                console.log("Producto guardado con ID:", docRef.id);
+                loadProducts();
+                return docRef.id; // Return the new product ID
+            } catch (error) {
+                console.error("Error saving product: ", error);
+                alert("Error al guardar el producto. Consulta la consola para más detalles.");
+                return null; // Indicate failure
+            }
+        }
+
+        async function deleteProduct(id) {
+            if (confirm("¿Eliminar este producto?")) {
+                try {
+                    await deleteDoc(doc(db, "products", id));
+                    loadProducts();
+                } catch (error) {
+                    console.error("Error deleting product: ", error);
+                    alert("Error al eliminar el producto. Consulta la consola para más detalles.");
                 }
             }
-            
-            renderProductList(filteredProducts);
         }
-        
-        // Carrito de compras
+
+        // --- Rendering ---
+        function renderProductList(productsToRender = products) {
+            const container = document.getElementById('productContainer');
+            container.innerHTML = productsToRender.map(product => `
+                <div class="col-md-4 col-lg-3 mb-4">
+                    <div class="card product-card h-100">
+                        <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 200px; object-fit: contain;">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${product.name}</h5>
+                            ${product.description ? `<p class="card-text" style="font-size: 0.9rem;">${product.description}</p>` : ''}
+                            <div class="mt-auto">
+                                <p class="card-text fw-bold">AR$ ${product.price.toLocaleString('es-AR')}</p>
+                                <button class="btn btn-primary w-100" onclick="addToCart('${product.id}', '${product.name}', ${product.price})">
+                                    <i class="fas fa-cart-plus me-2"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('') || '<div class="col-12 text-center"><p>No se encontraron productos</p></div>';
+        }
+
+        function renderAdminProductList() {
+            const container = document.getElementById('adminProductList');
+            container.innerHTML = products.map(product => `
+                <tr>
+                    <td><img src="${product.image}" alt="${product.name}" class="img-thumbnail" style="height: 60px;"></td>
+                    <td>${product.name}</td>
+                    <td>AR$ ${product.price.toLocaleString('es-AR')}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger" onclick="deleteProduct('${product.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('') || '<tr><td colspan="4" class="text-center">No hay productos</td></tr>';
+        }
+
+        // --- Cart Management ---
         function addToCart(productId, productName, price) {
             const existingItem = cart.find(item => item.id === productId);
             if (existingItem) {
@@ -679,12 +587,12 @@
             updateCart();
             toggleCart();
         }
-        
+
         function removeFromCart(productId) {
             cart = cart.filter(item => item.id !== productId);
             updateCart();
         }
-        
+
         function updateQuantity(productId, change) {
             const item = cart.find(item => item.id === productId);
             if (item) {
@@ -700,13 +608,13 @@
         function updateCart() {
             const cartItems = document.getElementById('cartItems');
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
+
             // Actualizar contadores
             document.getElementById('floatingCartCount').textContent = totalItems;
             document.getElementById('cartBadge').textContent = totalItems;
-            
+
             // Actualizar lista de items
-            cartItems.innerHTML = cart.length > 0 ? 
+            cartItems.innerHTML = cart.length > 0 ?
                 cart.map(item => `
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div>
@@ -715,201 +623,151 @@
                         </div>
                         <div class="d-flex align-items-center">
                             <div class="input-group input-group-sm" style="width: 120px;">
-                                <button class="btn btn-outline-secondary" onclick="updateQuantity(${item.id}, -1)">-</button>
+                                <button class="btn btn-outline-secondary" onclick="updateQuantity('${item.id}', -1)">-</button>
                                 <input type="text" class="form-control text-center" value="${item.quantity}" readonly>
-                                <button class="btn btn-outline-secondary" onclick="updateQuantity(${item.id}, 1)">+</button>
+                                <button class="btn btn-outline-secondary" onclick="updateQuantity('${item.id}', 1)">+</button>
                             </div>
                             <span class="mx-3">AR$ ${(item.price * item.quantity).toLocaleString('es-AR')}</span>
-                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart(${item.id})">
+                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart('${item.id}')">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
                     </div>
-                `).join('') : 
+                `).join('') :
                 '<p class="text-center">Tu carrito está vacío</p>';
-            
+
             // Actualizar total
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('cartTotal').textContent = `AR$ ${total.toLocaleString('es-AR')}`;
         }
-        
+
         function toggleCart() {
             const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
             cartModal.toggle();
         }
-        
+
         function sendWhatsAppOrder() {
-            const itemsText = cart.map(item => 
+            const itemsText = cart.map(item =>
                 `- ${item.name} (${item.quantity} x AR$ ${item.price.toLocaleString('es-AR')}) = AR$ ${(item.quantity * item.price).toLocaleString('es-AR')}`
             ).join('%0A');
-            
+
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
+
             const message = `*PEDIDO DE MI Mimos Para Tu Casa*%0A%0A${itemsText}%0A%0A*Total:* AR$ ${total.toLocaleString('es-AR')}%0A%0A*Datos del cliente:*%0A▫️ Nombre: [COMPLETAR]%0A▫️ Dirección: [COMPLETAR]%0A▫️ Teléfono: [COMPLETAR]%0A▫️ Forma de pago: [COMPLETAR]`;
-            
-            window.open(`https://api.whatsapp.com/send/?phone=${+5493814594848}&text=${message}&type=phone_number&app_absent=0`, '_blank');
+
+            window.open(`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${message}&type=phone_number&app_absent=0`, '_blank');
         }
 
-        // Mostrar previsualización de imagen
-        document.getElementById('productImage').addEventListener('change', function(e) {
+        // --- Filtering ---
+        function filterProducts() {
+            const category = document.getElementById('categoryFilter').value;
+            const priceRange = document.getElementById('priceFilter').value;
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+
+            let filteredProducts = products;
+
+            if (category !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === category);
+            }
+
+            if (searchTerm) {
+                filteredProducts = filteredProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description?.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            if (priceRange !== 'all') {
+                const [min, max] = priceRange.split('-').map(Number);
+                if (priceRange.endsWith('+')) {
+                    filteredProducts = filteredProducts.filter(product => product.price > min);
+                } else {
+                    filteredProducts = filteredProducts.filter(product => product.price >= min && product.price <= max);
+                }
+            }
+
+            renderProductList(filteredProducts);
+        }
+
+        // --- Image Preview ---
+        document.getElementById('productImage').addEventListener('change', function (e) {
             const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(event) {
+                reader.onload = function (event) {
                     document.getElementById('productImagePreview').src = event.target.result;
                 }
                 reader.readAsDataURL(file);
             }
         });
-        
-        // Manejar envío de formulario de producto
-        document.getElementById('productForm').addEventListener('submit', function(e) {
+
+        // --- Form Submission ---
+        document.getElementById('productForm').addEventListener('submit', async function (e) {
             e.preventDefault();
-            
+
             const product = {
-                id: currentProductId++,
                 name: document.getElementById('productName').value,
                 description: document.getElementById('productDescription').value,
                 price: parseFloat(document.getElementById('productPrice').value),
                 category: document.getElementById('productCategory').value,
-                image: document.getElementById('productImagePreview').src,
-                sizes: ['S', 'M', 'L'] // Tallas predeterminadas
             };
-            
-            products.push(product);
-            localStorage.setItem('products', JSON.stringify(products));
-            
-            // Mostrar notificación
-            const notification = document.createElement('div');
-            notification.className = 'alert alert-success alert-dismissible fade show';
-            notification.style.position = 'fixed';
-            notification.style.bottom = '20px';
-            notification.style.right = '20px';
-            notification.style.zIndex = '1001';
-            notification.innerHTML = `
-                <strong>¡Éxito!</strong> Producto agregado correctamente.
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            `;
-            document.body.appendChild(notification);
-            
-            // Limpiar formulario y actualizar listas
-            this.reset();
-            document.getElementById('productImagePreview').src = 'https://placehold.co/300x200';
-            
-            renderAdminProductList();
-            renderProductList();
-            
-            // Remover notificación después de 3 segundos
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        });
 
-        // Renderizar lista de productos en el panel de admin
-        function renderAdminProductList() {
-            const container = document.getElementById('adminProductList');
-            container.innerHTML = products.map(product => `
-                <tr>
-                    <td><img src="${product.image}" alt="${product.name}" class="img-thumbnail"></td>
-                    <td>${product.name}</td>
-                    <td>AR$ ${product.price.toLocaleString('es-AR')}</td>
-                    <td>
-                        <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.id})">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('') || '<tr><td colspan="4" class="text-center">No hay productos</td></tr>';
-        }
+            const productId = await saveProductToFirestore(product);
 
-        // Renderizar lista de productos en la tienda
-        function renderProductList(productsToRender = products) {
-            const container = document.getElementById('productContainer');
-            container.innerHTML = productsToRender.map(product => `
-                <div class="col-md-4 col-lg-3 mb-4">
-                    <div class="card product-card h-100">
-                        <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 200px; object-fit: contain;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${product.name}</h5>
-                            ${product.description ? `<p class="card-text" style="font-size: 0.9rem;">${product.description}</p>` : ''}
-                            <div class="mt-auto">
-                                <p class="card-text fw-bold">AR$ ${product.price.toLocaleString('es-AR')}</p>
-                                <button class="btn btn-primary w-100" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
-                                    <i class="fas fa-cart-plus me-2"></i> Agregar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('') || '<div class="col-12 text-center"><p>No se encontraron productos</p></div>';
-        }
+            if (productId) {
+                // Success notification
+                const notification = document.createElement('div');
+                notification.className = 'alert alert-success alert-dismissible fade show';
+                notification.style.position = 'fixed';
+                notification.style.bottom = '20px';
+                notification.style.right = '20px';
+                notification.style.zIndex = '1001';
+                notification.innerHTML = `
+                    <strong>¡Éxito!</strong> Producto agregado correctamente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                document.body.appendChild(notification);
 
-        // Eliminar producto
-        function deleteProduct(id) {
-            if (confirm('¿Estás seguro de eliminar este producto?')) {
-                products = products.filter(product => product.id !== id);
-                localStorage.setItem('products', JSON.stringify(products));
+                // Reset form and update lists
+                this.reset();
+                document.getElementById('productImagePreview').src = 'https://placehold.co/300x200';
+
                 renderAdminProductList();
                 renderProductList();
-            }
-        }
 
-        // Inicializar filtros
-        function initFilters() {
+                // Remove notification after 3 seconds
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+        });
+
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', function () {
+            // Event listeners for filters
             document.getElementById('categoryFilter').addEventListener('change', filterProducts);
-            document.getElementById('sizeFilter').addEventListener('change', filterProducts);
             document.getElementById('priceFilter').addEventListener('change', filterProducts);
             document.getElementById('searchFilter').addEventListener('input', filterProducts);
-        }
 
-        // Verificar sesión al cargar
-        document.addEventListener('DOMContentLoaded', function() {
-            initFilters();
+            // Initial UI setup
             if (isLoggedIn()) {
                 showAdminSection();
             } else {
                 showUserSection();
             }
-            
-            // Agregar algunos productos de ejemplo si no hay ninguno
-            if (products.length === 0) {
-                products = [
-                    {
-                        id: 1,
-                        name: "Remera Básica",
-                        description: "Remera de algodón 100% en color blanco",
-                        price: 8999,
-                        category: "remeras",
-                        image: "https://placehold.co/300x200",
-                        sizes: ["S", "M", "L"]
-                    },
-                    {
-                        id: 2,
-                        name: "Jeans Slim Fit",
-                        description: "Pantalón jean ajustado color azul",
-                        price: 14999,
-                        category: "pantalones",
-                        image: "https://placehold.co/300x200",
-                        sizes: ["S", "M", "L"]
-                    },
-                    {
-                        id: 3,
-                        name: "Vestido Floral",
-                        description: "Vestido veraniego con estampado floral",
-                        price: 12999,
-                        category: "vestidos",
-                        image: "https://placehold.co/300x200",
-                        sizes: ["S", "M", "L"]
-                    }
-                ];
-                localStorage.setItem('products', JSON.stringify(products));
-                currentProductId = 4;
-            }
-            
-            renderProductList();
         });
-        
-        
+
+        // Make functions accessible globally
+        window.loginAdmin = loginAdmin;
+        window.logoutAdmin = logoutAdmin;
+        window.deleteProduct = deleteProduct;
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateQuantity = updateQuantity;
+        window.toggleCart = toggleCart;
+        window.sendWhatsAppOrder = sendWhatsAppOrder;
+        window.showAdminSection = showAdminSection;
+        window.showUserSection = showUserSection;
     </script>
 </body>
 </html>
