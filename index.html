@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +25,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,7 +39,7 @@
             overflow: hidden;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
             animation: fadeInUp 0.5s;
         }
 
@@ -79,6 +80,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -86,9 +88,20 @@
         }
 
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            20%, 60% { transform: translateX(-5px); }
-            40%, 80% { transform: translateX(5px); }
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-5px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(5px);
+            }
         }
 
         .shake {
@@ -109,7 +122,7 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
             cursor: pointer;
             z-index: 1000;
         }
@@ -134,9 +147,10 @@
         .product-card {
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .product-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         /* Admin Styles */
@@ -157,12 +171,14 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--gradient);">
         <div class="container">
             <a class="navbar-brand" href="#" style="display: flex; align-items: center;">
-                <img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules" style="height: 40px; margin-right: 10px; border-radius: 60%;">
+                <img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules"
+                    style="height: 40px; margin-right: 10px; border-radius: 60%;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -179,7 +195,8 @@
                     </button>
                     <button class="btn btn-outline-light position-relative" onclick="toggleCart()">
                         <i class="fas fa-shopping-cart me-1"></i> Carrito
-                        <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                        <span id="cartBadge"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
                     </button>
                 </div>
             </div>
@@ -190,7 +207,8 @@
     <div id="loginModal" class="login-modal" style="display: none;">
         <div class="login-content">
             <div class="login-header">
-                <a href=""><img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules" style="height: 40px; margin-right: 10px; border-radius: 60%;"></a>
+                <a href=""><img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules"
+                        style="height: 40px; margin-right: 10px; border-radius: 60%;"></a>
                 <h3><i class="fas fa-lock me-2"></i> Acceso Administrador</h3>
                 <p class="mb-0">Ingresa tus credenciales</p>
             </div>
@@ -219,7 +237,8 @@
     <!-- User Section -->
     <div id="userSection" class="container py-5">
         <div class="imagen">
-            <img src="src/sabanas-algodon.jpg" alt="Accesorios de moda organizados sobre fondo blanco" class="d-block w-100">
+            <img src="src/sabanas-algodon.jpg" alt="Accesorios de moda organizados sobre fondo blanco"
+                class="d-block w-100">
         </div>
 
         <h2 class="text-center mb-5">Nuestros Productos</h2>
@@ -316,7 +335,8 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Precio</label>
-                                    <input type="number" class="form-control" id="productPrice" min="0" step="0.01" required>
+                                    <input type="number" class="form-control" id="productPrice" min="0" step="0.01"
+                                        required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Categoría</label>
@@ -333,7 +353,8 @@
                             <div class="mb-3">
                                 <label class="form-label">Imagen</label>
                                 <input type="file" class="form-control" id="productImage" accept="image/*" required>
-                                <img id="productImagePreview" src="https://placehold.co/300x200" alt="Vista previa del producto" class="mt-2">
+                                <img id="productImagePreview" src="https://placehold.co/300x200"
+                                    alt="Vista previa del producto" class="mt-2">
                             </div>
                             <button type="submit" class="btn btn-primary w-100">
                                 <i class="fas fa-save me-2"></i> Guardar Producto
@@ -360,7 +381,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="adminProductList">
-                                    <!-- Lista de productos se cargará aquí -->
+                                    <!-- Lista de productos se cargarán aquí -->
                                 </tbody>
                             </table>
                         </div>
@@ -377,7 +398,8 @@
                 <!-- Instagram -->
                 <div class="col-md-4 mb-3 mb-md-0">
                     <h5><i class="fab fa-instagram me-2"></i> Seguinos en Instagram</h5>
-                    <a href="https://www.instagram.com/mimos.hogar/" target="_blank" class="text-white text-decoration-none">
+                    <a href="https://www.instagram.com/mimos.hogar/" target="_blank"
+                        class="text-white text-decoration-none">
                         @mimos.hogar
                     </a>
                 </div>
@@ -405,8 +427,10 @@
         // Import Firebase modules
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from
+            "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from
+            "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
 
         // Firebase configuration
         const firebaseConfig = {
@@ -487,7 +511,10 @@
                 const querySnapshot = await getDocs(collection(db, "products"));
                 products = [];
                 querySnapshot.forEach((doc) => {
-                    products.push({ id: doc.id, ...doc.data() });
+                    products.push({
+                        id: doc.id,
+                        ...doc.data()
+                    });
                 });
                 renderProductList();
                 renderAdminProductList();
@@ -501,6 +528,12 @@
             try {
                 // Upload image to Firebase Storage
                 const imageFile = document.getElementById('productImage').files[0];
+
+                if (!imageFile) {
+                    alert("Por favor, selecciona una imagen para el producto.");
+                    return null;
+                }
+
                 const storageRef = ref(storage, `products/${imageFile.name}`);
                 await uploadBytes(storageRef, imageFile);
                 const imageUrl = await getDownloadURL(storageRef);
@@ -770,4 +803,5 @@
         window.showUserSection = showUserSection;
     </script>
 </body>
+
 </html>
