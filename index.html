@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mimos para tu Casa</title>
+  <title>Casa Mia - Mimos para tu Casa</title>
   <!-- Google Fonts: Inter para texto general, Playfair Display para títulos -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -186,7 +186,6 @@
           </svg>
           Ver Tienda
         </button>
-
         <button id="logoutBtn" aria-label="Salir" class="nav-button">
           <svg fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
             <path d="M16 17l5-5m0 0l-5-5m5 5H9" />
@@ -206,15 +205,15 @@
       </nav>
     </div>
   </header>
-
+<div>
   <!-- BANNER -->
-  <section class="relative max-w-8x2 mx-auto mt-8 shadow-xl rounded-xl overflow-hidden">
+  <section class="relative max-w-6xl mx-auto mt-8 shadow-xl rounded-xl overflow-hidden">
     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f52f3a6-e44e-40eb-b611-90c593e2c5b8.png" alt="Banner decorative showing cozy home interior with warm lighting and soft textiles" class="w-full object-cover h-64 md:h-80" />
     <h1 class="absolute inset-0 flex justify-center items-center text-white text-5xl font-serif font-semibold drop-shadow-lg select-none pointer-events-none">Mimos para tu casa</h1>
   </section>
-
+</div>
   <!-- MAIN CONTENT -->
-  <main class="container mx-auto px-4 flex-grow mt-10">
+  <main class="container mx-auto px-1 flex-grow mt-1 height=100px">
 
     <!-- Product Search and Filters -->
     <section id="productShowcase" class="mb-12 bg-[var(--color-background-light)] rounded-2xl p-8 shadow-xl">
@@ -244,7 +243,7 @@
         </select>
       </form>
       <!-- Product Grid -->
-      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6" ></div>
     </section>
 
     <!-- ADMIN PANEL (hidden by default) -->
@@ -358,7 +357,7 @@
       </div>
     </div>
     <div class="border-t border-[var(--color-border)] mt-10 pt-6 text-center text-sm text-[var(--color-text-medium)]">
-      © 2025 Mimos para tu Casa. Todos los derechos reservados.
+      © 2025 Casa Mia. Todos los derechos reservados.
     </div>
   </footer>
 
@@ -432,13 +431,14 @@
   </aside>
 
   <!-- CHAT BUTTON -->
-  <button id="chatButton" aria-label="Botón contacto WhatsApp" class="fixed bottom-8 right-8 bg-[var(--color-primary)] rounded-full w-16 h-16 shadow-xl flex items-center justify-center z-40 hover:bg-[var(--color-primary-dark)] transition-colors duration-300 transform hover:scale-105">
+  <a href="https://www.instagram.com/mimos.hogar/">
+    <button id="chatButton" aria-label="Botón contacto WhatsApp" class="fixed bottom-8 right-8 bg-[var(--color-primary)] rounded-full w-16 h-16 shadow-xl flex items-center justify-center z-40 hover:bg-[var(--color-primary-dark)] transition-colors duration-300 transform hover:scale-105">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
       <path d="M21 11.5a8.38 8.38 0 0 1-16.88 2.49l-1.62 6.78 6.57-1.7A8.33 8.33 0 0 1 21 11.5z" />
     </svg>
     <span class="notif-bubble hidden" id="chatNotifCount">1</span>
   </button>
-
+</a>
 <script>
   'use strict';
 
@@ -525,7 +525,7 @@
       imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf9cbf-a5ff-489b-91fc-e4ef283f3e87.png"
     },
     {
-      id: "11",
+      id: "8",
       name: "Frazada Polar",
       description: "Frazada de tejido polar liviana, ideal para media estación.",
       price: 6400,
@@ -536,8 +536,8 @@
 
   let filteredProducts = [...products];
   let cart = JSON.parse(localStorage.getItem("cart")) || {};
-  const adminEmail = "admin@mitienda.com";
-  const adminPassword = "admin123";
+  const adminEmail = "admin@ejemplo.com";
+  const adminPassword = "password123";
 
   // DOM references
   const productGrid = document.getElementById("productGrid");
@@ -594,7 +594,7 @@
       const img = document.createElement("img");
       img.src = p.imageUrl;
       img.alt = `Imagen de producto: ${p.name}, categoría ${p.category}`;
-      img.className = "w-full h-48 object-cover";
+      img.className = "w-full h-70 object-cover";
       img.loading = "lazy";
       img.onerror = () => img.src = "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a4260a0a-46ab-450f-baa5-0abe1968d9d9.png";
       card.appendChild(img);
@@ -660,8 +660,8 @@
       const img = document.createElement("img");
       img.src = p.imageUrl;
       img.alt = `Imagen producto admin: ${p.name}`;
-      img.style.width = "120px";
-      img.style.height = "90px";
+      img.style.width = "70px";
+      img.style.height = "45px";
       img.className = "object-cover rounded-md";
       img.onerror = () => img.src = "https://placehold.co/600x400?text=Imagen+no+disponible";
       imgTd.appendChild(img);
