@@ -1,807 +1,1078 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mimos Para Tu Casa</title>
-    <link rel="shortcut icon" type="image/x-icon" href="src\logo.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --light: #F7FFF7;
-            --dark: #292F36;
-            --gradient: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Casa Mia - Mimos para tu Casa</title>
+  <!-- Google Fonts: Inter para texto general, Playfair Display para títulos -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Definición de colores personalizados y fuentes para un look moderno */
+    :root {
+      --color-primary: #FF6B6B; /* Rojo coral vibrante */
+      --color-primary-dark: #E04F4F; /* Rojo coral más oscuro para hover */
+      --color-secondary: #FFD166; /* Amarillo suave */
+      --color-background-light: #FDFBF0; /* Fondo muy claro, casi blanco */
+      --color-background-medium: #F8F5E9; /* Fondo ligeramente más oscuro */
+      --color-text-dark: #333333; /* Texto oscuro suave */
+      --color-text-medium: #666666; /* Texto gris medio */
+      --color-border: #E0E0E0; /* Borde gris claro */
+      --color-shadow-light: rgba(0, 0, 0, 0.05);
+      --color-shadow-medium: rgba(0, 0, 0, 0.1);
+    }
 
-        /* Modal Login Estilizado */
-        .login-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            backdrop-filter: blur(5px);
-        }
+    body {
+      background-color: var(--color-background-medium);
+      font-family: 'Inter', sans-serif; /* Fuente moderna para el cuerpo */
+      color: var(--color-text-dark);
+      line-height: 1.6; /* Mejorar legibilidad */
+    }
 
-        .login-content {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 450px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            animation: fadeInUp 0.5s;
-        }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif; /* Fuente elegante para títulos */
+      color: var(--color-text-dark);
+    }
 
-        .login-header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    /* Estilos del logo en el header */
+    .header-logo {
+      font-weight: 700;
+      font-size: 1.75rem; /* Más grande y prominente */
+      display: flex;
+      align-items: center;
+      gap: 0.75rem; /* Más espacio */
+      color: var(--color-text-dark);
+      transition: color 0.3s ease;
+    }
+    .header-logo:hover {
+      color: var(--color-primary);
+    }
+    .header-logo svg {
+      stroke: var(--color-primary);
+      width: 2.25rem; /* Icono más grande */
+      height: 2.25rem;
+      transition: stroke 0.3s ease;
+    }
+    .header-logo:hover svg {
+      stroke: var(--color-primary-dark);
+    }
 
-        .login-body {
-            padding: 30px;
-        }
+    /* Estilos generales de botones */
+    .btn-pink {
+      background-color: var(--color-primary);
+      color: #fff;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem; /* Más padding */
+      border-radius: 0.5rem; /* Bordes redondeados */
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px var(--color-shadow-light); /* Sombra sutil */
+    }
+    .btn-pink:hover {
+      background-color: var(--color-primary-dark);
+      transform: translateY(-2px); /* Efecto de elevación */
+      box-shadow: 0 6px 12px var(--color-shadow-medium); /* Sombra más pronunciada */
+    }
+    .btn-pink:active {
+      transform: translateY(0); /* Vuelve a la posición original al hacer click */
+      box-shadow: 0 2px 4px var(--color-shadow-light);
+    }
 
-        .form-floating label {
-            color: #6c757d;
-        }
+    /* Estilos de las tarjetas de producto */
+    .card {
+      background: var(--color-background-light);
+      border-radius: 1rem; /* Más redondeado */
+      box-shadow: 0 8px 20px var(--color-shadow-light); /* Sombra más suave y grande */
+      transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      overflow: hidden; /* Asegura que la imagen no se salga del borde redondeado */
+    }
+    .card:hover {
+      box-shadow: 0 16px 30px var(--color-shadow-medium); /* Sombra más intensa al hover */
+      transform: translateY(-5px); /* Efecto de elevación más pronunciado */
+    }
 
-        .btn-login {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            padding: 12px;
-            font-weight: 600;
-            width: 100%;
-            margin-top: 10px;
-        }
+    /* Estilos de los inputs y selects */
+    .input-focus:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.2); /* Sombra de enfoque más suave */
+    }
 
-        .login-footer {
-            text-align: center;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-top: 1px solid #eee;
-        }
+    /* Scrollbar para el carrito lateral */
+    .sidebar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--color-primary);
+      border-radius: 100px;
+    }
 
-        /* Animaciones */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
+    /* Burbuja de notificación (carrito, chat) */
+    .notif-bubble {
+      background-color: var(--color-primary);
+      color: white;
+      font-weight: 700; /* Más negrita */
+      font-size: 0.7rem; /* Ligeramente más pequeño para un look más pulcro */
+      width: 22px; /* Tamaño ajustado */
+      height: 22px;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -10px; /* Ajustar posición */
+      right: -10px;
+      pointer-events: none;
+      user-select: none;
+      border: 3px solid var(--color-background-light); /* Borde más grueso para contraste */
+      box-shadow: 0 2px 5px var(--color-shadow-medium); /* Sombra para la burbuja */
+    }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    /* Estilos para los iconos en el footer */
+    .footer-icon {
+      stroke: var(--color-text-dark); /* Color oscuro para los iconos */
+      width: 1.5rem; /* Tamaño ligeramente más grande */
+      height: 1.5rem;
+    }
 
-        @keyframes shake {
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            20%,
-            60% {
-                transform: translateX(-5px);
-            }
-
-            40%,
-            80% {
-                transform: translateX(5px);
-            }
-        }
-
-        .shake {
-            animation: shake 0.5s;
-        }
-
-        /* Floating Cart */
-        .floating-cart {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        .cart-count {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--dark);
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        /* Product Card */
-        .product-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Admin Styles */
-        .admin-product-list img {
-            max-height: 60px;
-            width: auto;
-        }
-
-        /* Product Image Preview */
-        #productImagePreview {
-            max-height: 250px;
-            width: auto;
-            object-fit: contain;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-    </style>
+    /* Estilos para los botones de navegación */
+    .nav-button {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-medium);
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.2s ease;
+      padding: 0.5rem 0.75rem; /* Añadir padding para área de click */
+      border-radius: 0.5rem; /* Bordes suaves */
+    }
+    .nav-button:hover {
+      color: var(--color-primary);
+      transform: translateY(-1px);
+      background-color: rgba(255, 107, 107, 0.05); /* Fondo sutil al hover */
+    }
+    .nav-button svg {
+      stroke: currentColor; /* Hereda el color del texto */
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: stroke 0.3s ease;
+    }
+  </style>
 </head>
+<body class="relative min-h-screen flex flex-col">
 
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--gradient);">
-        <div class="container">
-            <a class="navbar-brand" href="#" style="display: flex; align-items: center;">
-                <img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules"
-                    style="height: 40px; margin-right: 10px; border-radius: 60%;">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" onclick="showUserSection()">Home</a>
-                    </li>
-                </ul>
-                <div class="d-flex">
-                    <button class="btn btn-outline-light position-relative" id="botonlogin">
-                        <a class="nav-link" href="#" onclick="showAdminSection()">Admin</a>
-                    </button>
-                    <button class="btn btn-outline-light position-relative" onclick="toggleCart()">
-                        <i class="fas fa-shopping-cart me-1"></i> Carrito
-                        <span id="cartBadge"
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Modal de Login -->
-    <div id="loginModal" class="login-modal" style="display: none;">
-        <div class="login-content">
-            <div class="login-header">
-                <a href=""><img src="src/logo.jpeg" alt="Logo Tienda Moda con diseño minimalista en tonos azules"
-                        style="height: 40px; margin-right: 10px; border-radius: 60%;"></a>
-                <h3><i class="fas fa-lock me-2"></i> Acceso Administrador</h3>
-                <p class="mb-0">Ingresa tus credenciales</p>
-            </div>
-            <div class="login-body">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="adminEmail" placeholder="Email">
-                    <label for="adminEmail">Email</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="adminPassword" placeholder="Contraseña">
-                    <label for="adminPassword">Contraseña</label>
-                </div>
-                <button class="btn btn-login" onclick="loginAdmin()">
-                    <i class="fas fa-sign-in-alt me-2"></i> Ingresar
-                </button>
-                <div id="loginError" class="text-danger mt-3 text-center" style="display: none;">
-                    <i class="fas fa-exclamation-circle me-2"></i> Credenciales incorrectas
-                </div>
-            </div>
-            <div class="login-footer">
-                <small>Acceso restringido al personal autorizado</small>
-            </div>
-        </div>
+  <!-- HEADER -->
+  <header class="bg-[var(--color-background-light)] py-5 border-b border-[var(--color-border)] sticky top-0 z-30 shadow-lg">
+    <div class="container mx-auto px-8 flex justify-between items-center">
+      <a href="#" class="header-logo" aria-label="Casa Mia logo with house icon">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke-width="1.5" stroke="currentColor"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.75L12 3l9 6.75v10.5a1.5 1.5 0 0 1-1.5 1.5h-15a1.5 1.5 0 0 1-1.5-1.5v-10.5z" />
+          <path d="M9 22.5v-6h6v6" />
+        </svg>
+        Casa Mia
+      </a>
+      <nav class="flex items-center gap-6 text-base md:text-lg">
+        <button id="adminBtn" class="nav-button" aria-label="Acceso Administrador">
+          <svg fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="7" r="4" />
+            <path d="M5.5 21h13a2 2 0 0 0-13 0z" />
+          </svg>
+          <span id="adminName" class="hidden md:inline">Admin</span>
+        </button>
+        <button id="viewStoreBtn" aria-label="Ver Tienda" class="hidden md:flex nav-button">
+          <svg fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 3h18v4H3z" />
+            <path d="M7 7v14h10V7" />
+          </svg>
+          Ver Tienda
+        </button>
+        <button id="logoutBtn" aria-label="Salir" class="nav-button">
+          <svg fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M16 17l5-5m0 0l-5-5m5 5H9" />
+            <path d="M12 19a9 9 0 1 1 0-14" />
+          </svg>
+          Salir
+        </button>
+        <button id="cartBtn" aria-label="Carrito de compras" class="relative nav-button">
+          <svg fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M3 3h2l.4 2M7 13h10l4-8H5.4" />
+            <circle cx="7" cy="21" r="1" />
+            <circle cx="17" cy="21" r="1" />
+          </svg>
+          <span class="notif-bubble hidden" id="cartCount">0</span>
+          <span class="hidden md:inline">Carrito</span>
+        </button>
+      </nav>
     </div>
+  </header>
 
-    <!-- User Section -->
-    <div id="userSection" class="container py-5">
-        <div class="imagen">
-            <img src="src/sabanas-algodon.jpg" alt="Accesorios de moda organizados sobre fondo blanco"
-                class="d-block w-100">
-        </div>
+  <!-- BANNER -->
+  <section class="relative max-w-6xl mx-auto mt-8 shadow-xl rounded-xl overflow-hidden">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f52f3a6-e44e-40eb-b611-90c593e2c5b8.png" alt="Banner decorative showing cozy home interior with warm lighting and soft textiles" class="w-full object-cover h-64 md:h-80" />
+    <h1 class="absolute inset-0 flex justify-center items-center text-white text-5xl font-serif font-semibold drop-shadow-lg select-none pointer-events-none">Mimos para tu casa</h1>
+  </section>
 
-        <h2 class="text-center mb-5">Nuestros Productos</h2>
-        <!-- Filtros -->
-        <div class="row mb-4">
-            <div class="col-md-3 mb-3">
-                <select class="form-select" id="categoryFilter">
-                    <option value="all">Todas las categorías</option>
-                    <option value="Sabanas">Sabanas</option>
-                    <option value="Frazadas">Frazadas</option>
-                    <option value="Almohadas">Almohadas</option>
-                    <option value="Cortinas">Cortinas</option>
-                    <option value="Manteles">Manteles</option>
-                    <option value="Otros">Otros</option>
-                </select>
-            </div>
-            <div class="col-md-3 mb-3">
-                <select class="form-select" id="priceFilter">
-                    <option value="all">Todos los precios</option>
-                    <option value="0-5000">$0 - $5,000</option>
-                    <option value="5000-10000">$5,000 - $10,000</option>
-                    <option value="10000-20000">$10,000 - $20,000</option>
-                    <option value="20000+">Más de $20,000</option>
-                </select>
-            </div>
-            <div class="col-md-3 mb-3">
-                <input type="text" class="form-control" placeholder="Buscar productos..." id="searchFilter">
-            </div>
-        </div>
+  <!-- MAIN CONTENT -->
+  <main class="container mx-auto px-4 flex-grow mt-10">
 
-        <div class="row" id="productContainer">
-            <!-- Productos se cargarán aquí dinámicamente -->
+    <!-- Product Search and Filters -->
+    <section id="productShowcase" class="mb-12 bg-[var(--color-background-light)] rounded-2xl p-8 shadow-xl">
+      <h2 class="text-center text-4xl font-serif mb-8 text-[var(--color-text-dark)]">Nuestros Productos</h2>
+      <form id="filtersForm" class="flex flex-col md:flex-row gap-5 p-6 mb-8 bg-white rounded-xl shadow-inner">
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Buscar productos..."
+          class="flex-1 border border-[var(--color-border)] rounded-lg px-5 py-3 input-focus text-[var(--color-text-dark)] placeholder-[var(--color-text-medium)]"
+          aria-label="Buscar productos"
+        />
+        <select id="categorySelect" class="border border-[var(--color-border)] rounded-lg px-5 py-3 input-focus text-[var(--color-text-dark)]" aria-label="Filtrar por categoría">
+          <option value="all">Todas las categorías</option>
+          <option value="sabanas">Sabanas</option>
+          <option value="frazadas">Frazadas</option>
+          <option value="almohadas">Almohadas</option>
+          <option value="cortinas">Cortinas</option>
+          <option value="manteles">Manteles</option>
+          <option value="otros">Otros</option>
+        </select>
+        <select id="priceSelect" class="border border-[var(--color-border)] rounded-lg px-5 py-3 input-focus text-[var(--color-text-dark)]" aria-label="Filtrar por precio">
+          <option value="all">Todos los precios</option>
+          <option value="under10000">Menos de $10.000</option>
+          <option value="10000to20000">$10.000 - $20.000</option>
+          <option value="over20000">Más de $20.000</option>
+        </select>
+      </form>
+      <!-- Product Grid -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    </section>
+
+    <!-- ADMIN PANEL (hidden by default) -->
+    <section id="adminPanel" class="hidden bg-[var(--color-background-light)] rounded-2xl p-10 shadow-xl max-w-5xl mx-auto mb-16">
+      <h2 class="text-center text-4xl font-serif mb-8 text-[var(--color-text-dark)]">Panel de Administración</h2>
+      <div class="flex border border-[var(--color-border)] rounded-xl overflow-hidden mb-8 text-lg font-semibold">
+        <button id="adminTabList" class="w-1/2 py-4 bg-[var(--color-background-medium)] hover:bg-[var(--color-secondary)] focus:outline-none transition-colors text-[var(--color-text-dark)]">
+          Lista de Productos
+        </button>
+        <button id="adminTabAdd" class="w-1/2 py-4 hover:bg-[var(--color-secondary)] focus:outline-none bg-white transition-colors text-[var(--color-text-dark)]">
+          Agregar Producto
+        </button>
+      </div>
+
+      <!-- Product List -->
+      <div id="productListView" class="">
+        <h3 class="font-serif font-semibold mb-5 text-2xl text-[var(--color-text-dark)]">Productos Existentes</h3>
+        <table class="w-full table-auto text-left text-base border-collapse bg-white rounded-xl shadow-inner">
+          <thead class="bg-[var(--color-background-medium)] border-b border-[var(--color-border)]">
+            <tr>
+              <th class="p-4">Imagen</th>
+              <th class="p-4">Nombre</th>
+              <th class="p-4">Categoría</th>
+              <th class="p-4">Precio</th>
+              <th class="p-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="adminProductTableBody"></tbody>
+        </table>
+      </div>
+
+      <!-- Add Product Form -->
+      <form id="addProductForm" class="hidden bg-white p-10 rounded-xl shadow-inner space-y-8">
+        <h3 class="font-serif font-semibold mb-6 text-2xl flex items-center gap-4 text-[var(--color-text-dark)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 stroke-current" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="16" />
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+          Agregar Nuevo Producto
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <label class="block">
+            <span class="text-base font-medium text-[var(--color-text-medium)]">Nombre del Producto</span>
+            <input id="productName" type="text" placeholder="Ej: Sábanas de Lino" class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required />
+          </label>
+          <label class="block">
+            <span class="text-base font-medium text-[var(--color-text-medium)]">URL de la Imagen</span>
+            <input id="productImageUrl" type="url" placeholder="https://..." class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required />
+          </label>
         </div>
+        <label class="block">
+          <span class="text-base font-medium text-[var(--color-text-medium)]">Descripción</span>
+          <textarea id="productDescription" rows="4" placeholder="Describe el producto..." class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required></textarea>
+        </label>
+        <div class="grid grid-cols-2 gap-8">
+          <label class="block">
+            <span class="text-base font-medium text-[var(--color-text-medium)]">Precio</span>
+            <input id="productPrice" type="number" min="0" step="any" class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required />
+          </label>
+          <label class="block">
+            <span class="text-base font-medium text-[var(--color-text-medium)]">Categoría</span>
+            <select id="productCategory" class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required>
+              <option value="sabanas">Sabanas</option>
+              <option value="frazadas">Frazadas</option>
+              <option value="almohadas">Almohadas</option>
+              <option value="cortinas">Cortinas</option>
+              <option value="manteles">Manteles</option>
+              <option value="otros">Otros</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn-pink w-full rounded-lg py-4 text-lg">Guardar Producto</button>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[var(--color-background-light)] mt-auto py-12 shadow-inner border-t border-[var(--color-border)]">
+    <div class="container mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left text-base font-inter">
+      <div class="flex flex-col items-center md:items-start gap-3">
+        <div class="flex items-center gap-3 justify-center md:justify-start font-semibold text-xl text-[var(--color-text-dark)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M7 12h10M7 16h10M7 8h10" />
+          </svg>
+          Seguinos
+        </div>
+        <span class="text-[var(--color-text-medium)]">@mimos.hogar</span>
+      </div>
+      <div class="flex flex-col items-center md:items-start gap-3">
+        <div class="flex items-center gap-3 justify-center md:justify-start font-semibold text-xl text-[var(--color-text-dark)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 1 1-12 0 6 6 0 0 1 12 0z" />
+            <path d="M18 18l4 4" />
+          </svg>
+          Medios de pago
+        </div>
+        <span class="text-[var(--color-text-medium)]">Transferencias / MercadoPago<br />Efectivo</span>
+      </div>
+      <div class="flex flex-col items-center md:items-start gap-3">
+        <div class="flex items-center gap-3 justify-center md:justify-start font-semibold text-xl text-[var(--color-text-dark)]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="footer-icon" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 12v-6M12 21h6" />
+            <circle cx="18" cy="6" r="2" />
+            <circle cx="6" cy="18" r="2" />
+          </svg>
+          Contactanos
+        </div>
+        <span class="text-[var(--color-text-medium)]">+54 9 381 457-1285<br />San Miguel de Tucumán</span>
+      </div>
     </div>
-
-    <!-- Floating Cart Button -->
-    <div class="floating-cart" onclick="toggleCart()">
-        <i class="fas fa-shopping-bag"></i>
-        <span class="cart-count" id="floatingCartCount">0</span>
+    <div class="border-t border-[var(--color-border)] mt-10 pt-6 text-center text-sm text-[var(--color-text-medium)]">
+      © 2025 Casa Mia. Todos los derechos reservados.
     </div>
+  </footer>
 
-    <!-- Cart Modal -->
-    <div class="modal fade" id="cartModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Tu Carrito</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="cartItems">
-                        <!-- Items del carrito se agregarán aquí -->
-                        <p class="text-center">Tu carrito está vacío</p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                        <h5>Total: <span id="cartTotal">$0</span></h5>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
-                    <button type="button" class="btn btn-success" onclick="sendWhatsAppOrder()">
-                        <i class="fab fa-whatsapp me-2"></i> Finalizar compra
-                    </button>
-                </div>
-            </div>
-        </div>
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-40 hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle" tabindex="-1">
+    <form id="loginForm" class="bg-[var(--color-background-light)] rounded-xl p-10 max-w-md w-full shadow-2xl relative" novalidate>
+      <button type="button" id="closeLogin" class="absolute top-4 right-4 text-[var(--color-text-medium)] hover:text-[var(--color-primary)] transition-colors" aria-label="Cerrar acceso administrador">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="w-7 h-7">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <h3 id="loginTitle" class="text-3xl font-serif font-semibold mb-6 flex items-center gap-3 text-[var(--color-text-dark)]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 stroke-current" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M12 1a9 9 0 0 0-9 9v8a4 4 0 0 0 8 0v-1h2v1a4 4 0 0 0 8 0v-8a9 9 0 0 0-9-9z" />
+          <path d="M8 11h8" />
+        </svg>
+        Acceso Administrador
+      </h3>
+      <p class="mb-8 text-[var(--color-text-medium)]">Ingresa tus credenciales para administrar la tienda.</p>
+      <label class="block mb-6">
+        <span class="text-base text-[var(--color-text-medium)]">Email</span>
+        <input name="email" type="email" placeholder="admin@ejemplo.com" class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required />
+      </label>
+      <label class="block mb-8">
+        <span class="text-base text-[var(--color-text-medium)]">Contraseña</span>
+        <input name="password" type="password" placeholder="********" class="w-full mt-2 rounded-lg border border-[var(--color-border)] px-5 py-3 input-focus" required />
+      </label>
+      <button type="submit" class="btn-pink w-full rounded-lg py-4 text-lg">Ingresar</button>
+      <p id="loginError" class="text-red-600 mt-4 text-sm hidden"></p>
+    </form>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-8 right-8 bg-[var(--color-background-light)] border-l-4 border-green-500 rounded-lg shadow-xl p-5 max-w-xs hidden z-50" role="alert" aria-live="assertive">
+    <div class="flex items-center gap-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 stroke-green-500" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M5 13l4 4L19 7" />
+      </svg>
+      <div>
+        <p class="font-semibold text-lg text-[var(--color-text-dark)]" id="toastTitle">Inicio de sesión exitoso</p>
+        <p id="toastMessage" class="text-[var(--color-text-medium)] text-sm">Bienvenido al panel de administración.</p>
+      </div>
     </div>
+  </div>
 
-    <!-- Admin Section (inicialmente oculta) -->
-    <div id="adminSection" class="container py-5" style="display: none;">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <h2>Panel de Administración</h2>
-            <button class="btn btn-danger" onclick="logoutAdmin()">
-                <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
-            </button>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card mb-4">
-                    <div class="card-header bg-primary text-white">
-                        <h5 class="mb-0"><i class="fas fa-plus-circle me-2"></i> Agregar Producto</h5>
-                    </div>
-                    <div class="card-body">
-                        <form id="productForm">
-                            <div class="mb-3">
-                                <label class="form-label">Nombre del Producto</label>
-                                <input type="text" class="form-control" id="productName" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Descripción</label>
-                                <textarea class="form-control" id="productDescription" rows="2"></textarea>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Precio</label>
-                                    <input type="number" class="form-control" id="productPrice" min="0" step="0.01"
-                                        required>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">Categoría</label>
-                                    <select class="form-select" id="productCategory" required>
-                                        <option value="Sabanas">Sabanas</option>
-                                        <option value="Frazadas">Frazadas</option>
-                                        <option value="Almohadas">Almohadas</option>
-                                        <option value="Cortinas">Cortinas</option>
-                                        <option value="Manteles">Manteles</option>
-                                        <option value="Otros">Otros</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Imagen</label>
-                                <input type="file" class="form-control" id="productImage" accept="image/*" required>
-                                <img id="productImagePreview" src="https://placehold.co/300x200"
-                                    alt="Vista previa del producto" class="mt-2">
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">
-                                <i class="fas fa-save me-2"></i> Guardar Producto
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header bg-success text-white">
-                        <h5 class="mb-0"><i class="fas fa-list me-2"></i> Lista de Productos</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Imagen</th>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="adminProductList">
-                                    <!-- Lista de productos se cargarán aquí -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER / BANNER FINAL LINDO -->
-    <footer class="mt-5 text-white" style="background: var(--gradient);">
-        <div class="container py-4 text-center">
-            <div class="row">
-                <!-- Instagram -->
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <h5><i class="fab fa-instagram me-2"></i> Seguinos en Instagram</h5>
-                    <a href="https://www.instagram.com/mimos.hogar/" target="_blank"
-                        class="text-white text-decoration-none">
-                        @mimos.hogar
-                    </a>
-                </div>
-
-                <!-- Medios de pago -->
-                <div class="col-md-4 mb-3 mb-md-0">
-                    <h5><i class="fas fa-credit-card me-2"></i> Medios de pago</h5>
-                    <p class="mb-0">📱 Transferencias / MercadoPago</p>
-                    <p class="mb-0">💵 Efectivo </p>
-                </div>
-
-                <!-- Contacto -->
-                <div class="col-md-4">
-                    <h5><i class="fas fa-phone-alt me-2"></i> Contactanos</h5>
-                    <p class="mb-1">📞 +54 9 381 457-1285</p>
-                    <p class="mb-0">📍 San Miguel de Tucumán</p>
-                </div>
-            </div>
-            <hr class="bg-white mt-4">
-            <small>&copy; 2025 Mimos Para Tu Casa. Todos los derechos reservados.</small>
-        </div>
+  <!-- CART SIDEBAR -->
+  <aside id="cartSidebar" class="fixed top-0 right-0 w-full md:w-96 h-full bg-[var(--color-background-light)] shadow-2xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+    <header class="p-6 flex justify-between items-center border-b border-[var(--color-border)]">
+      <h3 class="text-2xl font-semibold font-serif text-[var(--color-text-dark)]">Tu Carrito</h3>
+      <button id="closeCart" aria-label="Cerrar carrito" class="focus:outline-none text-[var(--color-text-medium)] hover:text-[var(--color-primary)] transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="w-7 h-7">
+          <line x1="18" y1="6" x2="6" y2="18" />
+          <line x1="6" y1="6" x2="18" y2="18" />
+        </svg>
+      </button>
+    </header>
+    <div id="cartItems" class="flex-grow overflow-y-auto p-6 space-y-6"></div>
+    <footer class="p-6 border-t border-[var(--color-border)]">
+      <div class="flex justify-between font-semibold font-serif mb-5 text-xl text-[var(--color-text-dark)]">
+        <span>Total:</span><span id="cartTotal">$0.00</span>
+      </div>
+      <button id="orderWhatsappBtn" class="btn-pink w-full rounded-lg py-4 mb-3 flex items-center justify-center gap-3 text-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="#fff" viewBox="0 0 24 24" stroke="none" >
+          <path d="M20.52 3.48c-2.45-2.36-6-2.55-8.57-.54-1.04.59-1.7 1.66-1.88 3.09-.15 1.14-.13 2.28 0 3.41.07.66.31 1.03 1.01 1.02.52 0 1.04-.01 1.56-.01 0 0 .34 0 .41.03.36.17.7.37 1.03.64.41.35.87.85.74 1.53-.13.7-.81.86-1.36.95-1.43.3-2.85.29-4.27.03a2.15 2.15 0 0 1-2-2.17c-.03-1.84-.03-3.67 0-5.5a.81.81 0 0 0-.25-.62A9.53 9.53 0 0 1 1.72 3.5c-1.87 3.41-1.84 7.45.06 10.85a9.33 9.33 0 0 0 16.78 1.6c.25-.38.47-.78.66-1.19a.68.68 0 0 0-.13-.84c-.67-.6-1.34-1.19-2-1.79-.21-.19-.44-.36-.62-.43a.49.49 0 0 0-.58.17c-.4.79-.85 1.53-1.24 2.32-.15.32-.28.35-.6.12-2.15-1.82-3.91-4-4.24-7.27-.06-.56.28-1.2.58-1.7a8.12 8.12 0 0 1 10.8-3.13 8.09 8.09 0 0 1 2.03 2.12 7.79 7.79 0 0 1 .43 6.85c-.18.38-.44.72-.7 1.08z" />
+        </svg>
+        Finalizar compra por WhatsApp
+      </button>
+      <button id="continueShoppingBtn" class="bg-transparent border border-[var(--color-border)] rounded-lg py-4 w-full text-[var(--color-text-dark)] font-semibold hover:bg-[var(--color-background-medium)] transition-colors">Seguir comprando</button>
     </footer>
+  </aside>
 
-    <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
-        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc } from
-            "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from
-            "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
+  <!-- CHAT BUTTON -->
+  <button id="chatButton" aria-label="Botón contacto WhatsApp" class="fixed bottom-8 right-8 bg-[var(--color-primary)] rounded-full w-16 h-16 shadow-xl flex items-center justify-center z-40 hover:bg-[var(--color-primary-dark)] transition-colors duration-300 transform hover:scale-105">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9 text-white" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+      <path d="M21 11.5a8.38 8.38 0 0 1-16.88 2.49l-1.62 6.78 6.57-1.7A8.33 8.33 0 0 1 21 11.5z" />
+    </svg>
+    <span class="notif-bubble hidden" id="chatNotifCount">1</span>
+  </button>
 
-        // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBl8kTYcAR27JjELPn_mfnkFuNtggBwTpM",
-            authDomain: "mimos-hogar.firebaseapp.com",
-            projectId: "mimos-hogar",
-            storageBucket: "mimos-hogar.firebasestorage.app",
-            messagingSenderId: "172064316587",
-            appId: "1:172064316587:web:dcf630128f346023c4ebee",
-            measurementId: "G-FNP23M53WP"
-        };
+<script>
+  'use strict';
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-        const db = getFirestore(app);
-        const storage = getStorage(app);
+  // Dummy products data (matches the product names, categories and prices of your screenshots)
+  const products = [
+    {
+      id: "1",
+      name: "Sábanas de Algodón",
+      description: "Juego de sábanas blancas de 400 hilos, suaves y lujosas.",
+      price: 18500,
+      category: "sabanas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b4df56d1-ca17-4b8b-b8fc-53613825da53.png"
+    },
+    {
+      id: "2",
+      name: "Frazada de Sherpa",
+      description: "Frazada reversible, extra cálida y confortable para el invierno.",
+      price: 15200,
+      category: "frazadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/10e2e921-62fd-4672-b3c7-286095716900.png"
+    },
+    {
+      id: "3",
+      name: "Almohada Viscoelástica",
+      description: "Almohada con memoria de forma para un descanso cervical óptimo.",
+      price: 9800,
+      category: "almohadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cced0b03-e3f3-4e43-8ee4-7661b87be958.png"
+    },
+    {
+      id: "4",
+      name: "Cortinas Blackout",
+      description: "Juego de cortinas que bloquean la luz para un ambiente oscuro.",
+      price: 11300,
+      category: "cortinas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/54a092fc-0498-4ca2-879a-9a1209358ca9.png"
+    },
+    {
+      id: "5",
+      name: "Mantel de Lino",
+      description: "Mantel elegante de lino antimanchas para vestir tu mesa.",
+      price: 7500,
+      category: "manteles",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3028e1e4-f443-4b82-89e3-42543be14716.png"
+    },
+    {
+      id: "6",
+      name: "Set de Toallas",
+      description: "Juego de 3 toallas de algodón premium: toalla, toallón y de mano.",
+      price: 8900,
+      category: "otros",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e702c2f8-b296-4537-b665-3f29f1fd2eac.png"
+    },
+    {
+      id: "7",
+      name: "Sábanas de Satén",
+      description: "Sábanas sedosas de satén para una experiencia de lujo.",
+      price: 21000,
+      category: "sabanas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f2ae2120-dca8-48a0-a3ab-e62b379d815c.png"
+    },
+    {
+      id: "8",
+      name: "Frazada Polar",
+      description: "Frazada de tejido polar liviana, ideal para media estación.",
+      price: 6400,
+      category: "frazadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf9cbf-a5ff-489b-91fc-e4ef283f3e87.png"
+    },
+    {
+      id: "9",
+      name: "Frazada Polar",
+      description: "Frazada de tejido polar liviana, ideal para media estación.",
+      price: 6400,
+      category: "frazadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf9cbf-a5ff-489b-91fc-e4ef283f3e87.png"
+    },
+    {
+      id: "10",
+      name: "Frazada Polar",
+      description: "Frazada de tejido polar liviana, ideal para media estación.",
+      price: 6400,
+      category: "frazadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf9cbf-a5ff-489b-91fc-e4ef283f3e87.png"
+    },
+    {
+      id: "11",
+      name: "Frazada Polar",
+      description: "Frazada de tejido polar liviana, ideal para media estación.",
+      price: 6400,
+      category: "frazadas",
+      imageUrl: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9dbf9cbf-a5ff-489b-91fc-e4ef283f3e87.png"
+    }
+  ];
 
-        // Global variables
-        let products = [];
-        let cart = [];
-        const WHATSAPP_NUMBER = '5493814594848';
-        const ADMIN_CREDENTIALS = {
-            email: "admin@mitienda.com",
-            password: "admin123"
-        };
+  let filteredProducts = [...products];
+  let cart = JSON.parse(localStorage.getItem("cart")) || {};
+  const adminEmail = "admin@ejemplo.com";
+  const adminPassword = "password123";
 
-        // --- Authentication ---
-        function isLoggedIn() {
-            return localStorage.getItem('adminLoggedIn') === 'true';
+  // DOM references
+  const productGrid = document.getElementById("productGrid");
+  const searchInput = document.getElementById("searchInput");
+  const categorySelect = document.getElementById("categorySelect");
+  const priceSelect = document.getElementById("priceSelect");
+  const adminPanel = document.getElementById("adminPanel");
+  const adminTabList = document.getElementById("adminTabList");
+  const adminTabAdd = document.getElementById("adminTabAdd");
+  const productListView = document.getElementById("productListView");
+  const addProductForm = document.getElementById("addProductForm");
+  const adminProductTableBody = document.getElementById("adminProductTableBody");
+  const loginModal = document.getElementById("loginModal");
+  const loginForm = document.getElementById("loginForm");
+  const closeLoginBtn = document.getElementById("closeLogin");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const adminBtn = document.getElementById("adminBtn");
+  const toastNotification = document.getElementById("toastNotification");
+  const toastTitle = toastNotification.querySelector("#toastTitle");
+  const toastMessage = toastNotification.querySelector("#toastMessage");
+  const productShowcase = document.getElementById("productShowcase"); // Referencia a la sección de productos
+
+  // Cart
+  const cartBtn = document.getElementById("cartBtn");
+  const cartSidebar = document.getElementById("cartSidebar");
+  const closeCartBtn = document.getElementById("closeCart");
+  const cartItems = document.getElementById("cartItems");
+  const cartTotal = document.getElementById("cartTotal");
+  const orderWhatsappBtn = document.getElementById("orderWhatsappBtn");
+  const continueShoppingBtn = document.getElementById("continueShoppingBtn");
+  const cartCount = document.getElementById("cartCount");
+
+  // Chat notification button (static for demo)
+  const chatButton = document.getElementById("chatButton");
+  const chatNotifCount = document.getElementById("chatNotifCount");
+
+  // Utility functions
+  function formatPrice(value) {
+    return "$" + value.toLocaleString('es-AR', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+  }
+
+  // Renders the product cards grid on store page
+  function renderProducts(productsToRender) {
+    productGrid.innerHTML = "";
+    if (productsToRender.length === 0) {
+      productGrid.innerHTML = '<p class="col-span-full text-center text-gray-600">No se encontraron productos.</p>';
+      return;
+    }
+    productsToRender.forEach(p => {
+      const card = document.createElement("article");
+      card.className = "card overflow-hidden flex flex-col";
+
+      // Image container with fallback
+      const img = document.createElement("img");
+      img.src = p.imageUrl;
+      img.alt = `Imagen de producto: ${p.name}, categoría ${p.category}`;
+      img.className = "w-full h-48 object-cover";
+      img.loading = "lazy";
+      img.onerror = () => img.src = "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a4260a0a-46ab-450f-baa5-0abe1968d9d9.png";
+      card.appendChild(img);
+
+      // Content container
+      const content = document.createElement("section");
+      content.className = "p-4 flex flex-col flex-grow";
+
+      // Product name
+      const nameEl = document.createElement("h3");
+      nameEl.className = "font-serif font-semibold mb-2 text-base md:text-lg";
+      nameEl.textContent = p.name;
+      content.appendChild(nameEl);
+
+      // Description
+      const desc = document.createElement("p");
+      desc.className = "text-sm mb-4 text-gray-700 flex-grow";
+      desc.textContent = p.description;
+      content.appendChild(desc);
+
+      // Price and Add button container
+      const footer = document.createElement("div");
+      footer.className = "flex justify-between items-center gap-4";
+
+      // Price text
+      const priceEl = document.createElement("span");
+      priceEl.className = "text-pink-500 font-semibold";
+      priceEl.textContent = formatPrice(p.price);
+      footer.appendChild(priceEl);
+
+      // Add Button
+      const addButton = document.createElement("button");
+      addButton.className = "btn-pink text-sm rounded-md flex items-center gap-1 px-4 py-2 hover:bg-red-600";
+      addButton.setAttribute("aria-label", `Agregar ${p.name} al carrito`);
+      addButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <circle cx="9" cy="21" r="1" />
+          <circle cx="20" cy="21" r="1" />
+          <path d="M1 1h4l2.68 13.39a1 1 0 0 0 .99.61h9.72a1 1 0 0 0 .99-.78l1.38-7.33H6" />
+        </svg> Agregar`;
+      addButton.addEventListener("click", () => addToCart(p.id));
+      footer.appendChild(addButton);
+
+      content.appendChild(footer);
+      card.appendChild(content);
+      productGrid.appendChild(card);
+    });
+  }
+
+  // Renders product rows in admin panel
+  function renderAdminProductTable() {
+    adminProductTableBody.innerHTML = "";
+    if (products.length === 0) {
+      adminProductTableBody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-gray-600 italic">No hay productos disponibles.</td></tr>`;
+      return;
+    }
+    products.forEach(p => {
+      const tr = document.createElement("tr");
+      tr.className = "border-b";
+
+      // Image td
+      const imgTd = document.createElement("td");
+      imgTd.className = "p-3";
+      const img = document.createElement("img");
+      img.src = p.imageUrl;
+      img.alt = `Imagen producto admin: ${p.name}`;
+      img.style.width = "70px";
+      img.style.height = "45px";
+      img.className = "object-cover rounded-md";
+      img.onerror = () => img.src = "https://placehold.co/600x400?text=Imagen+no+disponible";
+      imgTd.appendChild(img);
+      tr.appendChild(imgTd);
+
+      // Name td
+      const nameTd = document.createElement("td");
+      nameTd.className = "p-3 font-semibold";
+      nameTd.textContent = p.name;
+      tr.appendChild(nameTd);
+
+      // Category td
+      const catTd = document.createElement("td");
+      catTd.className = "p-3 capitalize";
+      catTd.textContent = p.category;
+      tr.appendChild(catTd);
+
+      // Price td
+      const priceTd = document.createElement("td");
+      priceTd.className = "p-3";
+      priceTd.textContent = formatPrice(p.price);
+      tr.appendChild(priceTd);
+
+      // Actions td
+      const actionsTd = document.createElement("td");
+      actionsTd.className = "p-3";
+      const delBtn = document.createElement("button");
+      delBtn.className = "bg-red-600 px-3 py-2 rounded-md text-white hover:bg-red-700 focus:outline-none";
+      delBtn.title = `Eliminar producto ${p.name}`;
+      delBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M3 6h18M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6M10 11v6M14 11v6M9 6V4a1 1 0 0 1 2 0v2M13 6V4a1 1 0 0 1 2 0v2"/>
+      </svg>`;
+      delBtn.addEventListener("click", () => deleteProduct(p.id));
+      actionsTd.appendChild(delBtn);
+      tr.appendChild(actionsTd);
+
+      adminProductTableBody.appendChild(tr);
+    });
+  }
+
+  // Filters products according to search and filters
+  function filterProducts() {
+    const searchVal = searchInput.value.trim().toLowerCase();
+    const catVal = categorySelect.value;
+    const priceVal = priceSelect.value;
+
+    filteredProducts = products.filter(product => {
+      // Search filter
+      const matchesSearch = product.name.toLowerCase().includes(searchVal) || product.description.toLowerCase().includes(searchVal);
+
+      // Category filter
+      const matchesCategory = catVal === "all" || product.category === catVal;
+
+      // Price filter
+      let matchesPrice = true;
+      if (priceVal === "under10000") {
+        matchesPrice = product.price < 10000;
+      } else if (priceVal === "10000to20000") {
+        matchesPrice = product.price >= 10000 && product.price <= 20000;
+      } else if (priceVal === "over20000") {
+        matchesPrice = product.price > 20000;
+      }
+
+      return matchesSearch && matchesCategory && matchesPrice;
+    });
+
+    renderProducts(filteredProducts);
+  }
+
+  // Adds a product to cart by id
+  function addToCart(productId) {
+    if (!cart[productId]) {
+      cart[productId] = 0;
+    }
+    cart[productId]++;
+    saveCart();
+    updateCartCount();
+    showToast("Producto agregado", "El producto ha sido añadido al carrito.");
+  }
+
+  // Saves cart to localStorage
+  function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  // Updates cart count bubble in header
+  function updateCartCount() {
+    const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+    if (totalCount > 0) {
+      cartCount.textContent = totalCount;
+      cartCount.classList.remove("hidden");
+    } else {
+      cartCount.classList.add("hidden");
+    }
+  }
+
+  // Renders cart sidebar items
+  function renderCart() {
+    cartItems.innerHTML = "";
+    const cartKeys = Object.keys(cart);
+    if (cartKeys.length === 0) {
+      cartItems.innerHTML = '<p class="text-center text-gray-600 italic">No hay productos en el carrito.</p>';
+      cartTotal.textContent = "$0,00";
+      return;
+    }
+
+    let total = 0;
+    cartKeys.forEach(id => {
+      const product = products.find(p => p.id === id);
+      if (!product) return; // Safety
+
+      const quantity = cart[id];
+      const subtotal = product.price * quantity;
+      total += subtotal;
+
+      // Cart item container
+      const item = document.createElement("div");
+      item.className = "flex gap-3 items-center justify-between border border-gray-300 rounded-md p-3";
+
+      // Img and info container
+      const leftdiv = document.createElement("div");
+      leftdiv.className = "flex gap-3 items-center";
+
+      // Image
+      const img = document.createElement("img");
+      img.src = product.imageUrl;
+      img.alt = `Miniatura de producto: ${product.name}`;
+      img.className = "w-20 h-14 object-cover rounded-md";
+      img.onerror = () => img.src = "https://placehold.co/600x400?text=Imagen+no+disponible";
+      leftdiv.appendChild(img);
+
+      // Name and price container
+      const infoDiv = document.createElement("div");
+      infoDiv.className = "flex flex-col font-serif";
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "font-semibold text-sm";
+      nameSpan.textContent = product.name;
+      const priceSpan = document.createElement("span");
+      priceSpan.className = "text-sm text-pink-600";
+      priceSpan.textContent = formatPrice(product.price);
+      infoDiv.appendChild(nameSpan);
+      infoDiv.appendChild(priceSpan);
+      leftdiv.appendChild(infoDiv);
+      item.appendChild(leftdiv);
+
+      // Quantity controls container
+      const qtyControls = document.createElement("div");
+      qtyControls.className = "flex items-center gap-2";
+
+      // Decrease quantity
+      const btnMinus = document.createElement("button");
+      btnMinus.className = "rounded-md bg-gray-300 hover:bg-gray-400 text-gray-700 px-2 py-0.5 font-semibold";
+      btnMinus.textContent = "-";
+      btnMinus.addEventListener("click", () => {
+        if(cart[id] > 1) {
+          cart[id]--;
+        } else {
+          delete cart[id];
         }
+        saveCart();
+        renderCart();
+        updateCartCount();
+      });
 
-        function loginAdmin() {
-            const email = document.getElementById('adminEmail').value;
-            const password = document.getElementById('adminPassword').value;
-            const errorElement = document.getElementById('loginError');
+      // Quantity display
+      const qtyText = document.createElement("span");
+      qtyText.textContent = quantity;
+      qtyText.className = "font-semibold min-w-[20px] text-center";
 
-            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
-                localStorage.setItem('adminLoggedIn', 'true');
-                document.getElementById('loginModal').style.display = 'none';
-                showAdminSection();
-            } else {
-                errorElement.style.display = 'block';
-                document.getElementById('loginModal').classList.add('shake');
-                setTimeout(() => {
-                    document.getElementById('loginModal').classList.remove('shake');
-                }, 500);
-            }
-        }
+      // Increase quantity
+      const btnPlus = document.createElement("button");
+      btnPlus.className = "rounded-md bg-gray-300 hover:bg-gray-400 text-gray-700 px-2 py-0.5 font-semibold";
+      btnPlus.textContent = "+";
+      btnPlus.addEventListener("click", () => {
+        cart[id]++;
+        saveCart();
+        renderCart();
+        updateCartCount();
+      });
 
-        function logoutAdmin() {
-            localStorage.removeItem('adminLoggedIn');
-            showUserSection();
-        }
+      qtyControls.appendChild(btnMinus);
+      qtyControls.appendChild(qtyText);
+      qtyControls.appendChild(btnPlus);
+      item.appendChild(qtyControls);
 
-        // --- UI Management ---
-        function showAdminSection() {
-            if (!isLoggedIn()) {
-                document.getElementById('loginModal').style.display = 'flex';
-                return;
-            }
+      // Subtotal & delete button container
+      const rightDiv = document.createElement("div");
+      rightDiv.className = "flex flex-col items-end gap-2";
 
-            document.getElementById('userSection').style.display = 'none';
-            document.getElementById('adminSection').style.display = 'block';
-            loadProducts();
-        }
+      // Subtotal price
+      const subtotalText = document.createElement("span");
+      subtotalText.textContent = formatPrice(subtotal);
+      subtotalText.className = "font-semibold text-base";
 
-        function showUserSection() {
-            document.getElementById('userSection').style.display = 'block';
-            document.getElementById('adminSection').style.display = 'none';
-            document.getElementById('loginModal').style.display = 'none';
-            loadProducts();
-        }
+      // Delete button
+      const delBtn = document.createElement("button");
+      delBtn.className = "text-red-600 hover:text-red-800 focus:outline-none";
+      delBtn.title = `Eliminar ${product.name} del carrito`;
+      delBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <path d="M6 18L18 6M6 6l12 12"/>
+      </svg>`;
+      delBtn.addEventListener("click", () => {
+        delete cart[id];
+        saveCart();
+        renderCart();
+        updateCartCount();
+      });
 
-        // --- Product Management ---
-        async function loadProducts() {
-            try {
-                const querySnapshot = await getDocs(collection(db, "products"));
-                products = [];
-                querySnapshot.forEach((doc) => {
-                    products.push({
-                        id: doc.id,
-                        ...doc.data()
-                    });
-                });
-                renderProductList();
-                renderAdminProductList();
-            } catch (error) {
-                console.error("Error loading products: ", error);
-                alert("Error al cargar los productos. Consulta la consola para más detalles.");
-            }
-        }
+      rightDiv.appendChild(subtotalText);
+      rightDiv.appendChild(delBtn);
+      item.appendChild(rightDiv);
 
-        async function saveProductToFirestore(product) {
-            try {
-                // Upload image to Firebase Storage
-                const imageFile = document.getElementById('productImage').files[0];
+      cartItems.appendChild(item);
+    });
 
-                if (!imageFile) {
-                    alert("Por favor, selecciona una imagen para el producto.");
-                    return null;
-                }
+    cartTotal.textContent = formatPrice(total);
+  }
 
-                const storageRef = ref(storage, `products/${imageFile.name}`);
-                await uploadBytes(storageRef, imageFile);
-                const imageUrl = await getDownloadURL(storageRef);
+  // Show toast notification
+  let toastTimeout;
+  function showToast(title = "Notificación", message = "") {
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+    toastNotification.classList.remove("hidden");
 
-                // Add product data to Firestore
-                const docRef = await addDoc(collection(db, "products"), {
-                    ...product,
-                    image: imageUrl
-                });
+    clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toastNotification.classList.add("hidden");
+    }, 3500);
+  }
 
-                console.log("Producto guardado con ID:", docRef.id);
-                loadProducts();
-                return docRef.id; // Return the new product ID
-            } catch (error) {
-                console.error("Error saving product: ", error);
-                alert("Error al guardar el producto. Consulta la consola para más detalles.");
-                return null; // Indicate failure
-            }
-        }
+  // Toggle admin panel tabs
+  function switchAdminTab(tab) {
+    if (tab === "list") {
+      productListView.classList.remove("hidden");
+      addProductForm.classList.add("hidden");
+      adminTabList.classList.add("bg-[var(--color-background-medium)]"); // Usar variable CSS
+      adminTabAdd.classList.remove("bg-[var(--color-background-medium)]");
+    } else {
+      productListView.classList.add("hidden");
+      addProductForm.classList.remove("hidden");
+      adminTabAdd.classList.add("bg-[var(--color-background-medium)]"); // Usar variable CSS
+      adminTabList.classList.remove("bg-[var(--color-background-medium)]");
+    }
+  }
 
-        async function deleteProduct(id) {
-            if (confirm("¿Eliminar este producto?")) {
-                try {
-                    await deleteDoc(doc(db, "products", id));
-                    loadProducts();
-                } catch (error) {
-                    console.error("Error deleting product: ", error);
-                    alert("Error al eliminar el producto. Consulta la consola para más detalles.");
-                }
-            }
-        }
+  // Adds a new product to products array and updates UI
+  function addProduct(product) {
+    product.id = Date.now().toString();
+    products.push(product);
+    renderAdminProductTable();
+    filterProducts();
+  }
 
-        // --- Rendering ---
-        function renderProductList(productsToRender = products) {
-            const container = document.getElementById('productContainer');
-            container.innerHTML = productsToRender.map(product => `
-                <div class="col-md-4 col-lg-3 mb-4">
-                    <div class="card product-card h-100">
-                        <img src="${product.image}" class="card-img-top p-3" alt="${product.name}" style="height: 200px; object-fit: contain;">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${product.name}</h5>
-                            ${product.description ? `<p class="card-text" style="font-size: 0.9rem;">${product.description}</p>` : ''}
-                            <div class="mt-auto">
-                                <p class="card-text fw-bold">AR$ ${product.price.toLocaleString('es-AR')}</p>
-                                <button class="btn btn-primary w-100" onclick="addToCart('${product.id}', '${product.name}', ${product.price})">
-                                    <i class="fas fa-cart-plus me-2"></i> Agregar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('') || '<div class="col-12 text-center"><p>No se encontraron productos</p></div>';
-        }
+  // Deletes product by id
+  function deleteProduct(productId) {
+    const index = products.findIndex(p => p.id === productId);
+    if (index !== -1) {
+      products.splice(index, 1);
+      renderAdminProductTable();
+      filterProducts();
+      showToast("Producto eliminado", "El producto fue eliminado correctamente.");
+    }
+  }
 
-        function renderAdminProductList() {
-            const container = document.getElementById('adminProductList');
-            container.innerHTML = products.map(product => `
-                <tr>
-                    <td><img src="${product.image}" alt="${product.name}" class="img-thumbnail" style="height: 60px;"></td>
-                    <td>${product.name}</td>
-                    <td>AR$ ${product.price.toLocaleString('es-AR')}</td>
-                    <td>
-                        <button class="btn btn-sm btn-danger" onclick="deleteProduct('${product.id}')">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('') || '<tr><td colspan="4" class="text-center">No hay productos</td></tr>';
-        }
+  // Show / Hide Admin Panel
+  function showAdminPanel(show = true) {
+    if (show) {
+      adminPanel.classList.remove("hidden");
+      filterProducts();
+    } else {
+      adminPanel.classList.add("hidden");
+      switchAdminTab("list");
+      closeCart(); // Cierra el carrito cuando se oculta el panel de administración
+    }
+  }
 
-        // --- Cart Management ---
-        function addToCart(productId, productName, price) {
-            const existingItem = cart.find(item => item.id === productId);
-            if (existingItem) {
-                existingItem.quantity++;
-            } else {
-                cart.push({
-                    id: productId,
-                    name: productName,
-                    price: price,
-                    quantity: 1
-                });
-            }
-            updateCart();
-            toggleCart();
-        }
+  // Authentication state
+  function isLoggedIn() {
+    return sessionStorage.getItem("loggedIn") === "true";
+  }
+  function login(email, password) {
+    if(email === adminEmail && password === adminPassword) {
+      sessionStorage.setItem("loggedIn", "true");
+      return true;
+    }
+    return false;
+  }
+  function logout() {
+    sessionStorage.removeItem("loggedIn");
+  }
 
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCart();
-        }
+  // Open and close sidebar cart
+  function openCart() {
+    cartSidebar.classList.remove("translate-x-full");
+    cartSidebar.setAttribute("aria-hidden", "false");
+    renderCart();
+  }
+  function closeCart() {
+    cartSidebar.classList.add("translate-x-full");
+    cartSidebar.setAttribute("aria-hidden", "true");
+  }
 
-        function updateQuantity(productId, change) {
-            const item = cart.find(item => item.id === productId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(productId);
-                } else {
-                    updateCart();
-                }
-            }
-        }
+  // Event Listeners
 
-        function updateCart() {
-            const cartItems = document.getElementById('cartItems');
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  // Filters form inputs
+  searchInput.addEventListener("input", filterProducts);
+  categorySelect.addEventListener("change", filterProducts);
+  priceSelect.addEventListener("change", filterProducts);
 
-            // Actualizar contadores
-            document.getElementById('floatingCartCount').textContent = totalItems;
-            document.getElementById('cartBadge').textContent = totalItems;
+  // Admin panel tabs
+  adminTabList.addEventListener("click", () => switchAdminTab("list"));
+  adminTabAdd.addEventListener("click", () => switchAdminTab("add"));
 
-            // Actualizar lista de items
-            cartItems.innerHTML = cart.length > 0 ?
-                cart.map(item => `
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            <h6>${item.name}</h6>
-                            <small>AR$ ${item.price.toLocaleString('es-AR')}</small>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <div class="input-group input-group-sm" style="width: 120px;">
-                                <button class="btn btn-outline-secondary" onclick="updateQuantity('${item.id}', -1)">-</button>
-                                <input type="text" class="form-control text-center" value="${item.quantity}" readonly>
-                                <button class="btn btn-outline-secondary" onclick="updateQuantity('${item.id}', 1)">+</button>
-                            </div>
-                            <span class="mx-3">AR$ ${(item.price * item.quantity).toLocaleString('es-AR')}</span>
-                            <button class="btn btn-sm btn-outline-danger" onclick="removeFromCart('${item.id}')">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                `).join('') :
-                '<p class="text-center">Tu carrito está vacío</p>';
+  // Admin login button
+  adminBtn.addEventListener("click", () => {
+    if (isLoggedIn()) {
+      showAdminPanel(true);
+    } else {
+      loginModal.classList.remove("hidden");
+      loginModal.querySelector("input[name=email]").focus();
+    }
+  });
 
-            // Actualizar total
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            document.getElementById('cartTotal').textContent = `AR$ ${total.toLocaleString('es-AR')}`;
-        }
+  // Close login modal button
+  closeLoginBtn.addEventListener("click", () => loginModal.classList.add("hidden"));
 
-        function toggleCart() {
-            const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-            cartModal.toggle();
-        }
+  // Login form submission
+  loginForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const formData = new FormData(loginForm);
+    const email = formData.get("email").trim();
+    const password = formData.get("password").trim();
+    const errorField = document.getElementById("loginError");
 
-        function sendWhatsAppOrder() {
-            const itemsText = cart.map(item =>
-                `- ${item.name} (${item.quantity} x AR$ ${item.price.toLocaleString('es-AR')}) = AR$ ${(item.quantity * item.price).toLocaleString('es-AR')}`
-            ).join('%0A');
+    if (login(email, password)) {
+      loginModal.classList.add("hidden");
+      showAdminPanel(true);
+      showToast("Inicio de sesión exitoso", "Bienvenido al panel de administración.");
+      errorField.classList.add("hidden");
+      loginForm.reset();
+    } else {
+      errorField.textContent = "Credenciales incorrectas. Por favor, inténtalo de nuevo.";
+      errorField.classList.remove("hidden");
+    }
+  });
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  // Logout button
+  logoutBtn.addEventListener("click", () => {
+    logout();
+    showAdminPanel(false); // Oculta el panel de admin y cierra el carrito
+    showToast("Sesión cerrada", "Has salido del panel de administración.");
+  });
 
-            const message = `*PEDIDO DE MI Mimos Para Tu Casa*%0A%0A${itemsText}%0A%0A*Total:* AR$ ${total.toLocaleString('es-AR')}%0A%0A*Datos del cliente:*%0A▫️ Nombre: [COMPLETAR]%0A▫️ Dirección: [COMPLETAR]%0A▫️ Teléfono: [COMPLETAR]%0A▫️ Forma de pago: [COMPLETAR]`;
+  // Add Product form submission
+  addProductForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const newProd = {
+      name: document.getElementById("productName").value.trim(),
+      imageUrl: document.getElementById("productImageUrl").value.trim(),
+      description: document.getElementById("productDescription").value.trim(),
+      price: +document.getElementById("productPrice").value,
+      category: document.getElementById("productCategory").value
+    };
+    if(newProd.name && newProd.imageUrl && newProd.description && newProd.price >= 0 && newProd.category) {
+      addProduct(newProd);
+      showToast("Producto agregado", "El producto fue agregado correctamente.");
+      addProductForm.reset();
+      switchAdminTab("list");
+    }
+  });
 
-            window.open(`https://api.whatsapp.com/send/?phone=${WHATSAPP_NUMBER}&text=${message}&type=phone_number&app_absent=0`, '_blank');
-        }
+  // Cart buttons open/close
+  cartBtn.addEventListener("click", openCart);
+  closeCartBtn.addEventListener("click", closeCart);
+  continueShoppingBtn.addEventListener("click", closeCart);
 
-        // --- Filtering ---
-        function filterProducts() {
-            const category = document.getElementById('categoryFilter').value;
-            const priceRange = document.getElementById('priceFilter').value;
-            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+  // Finalize order via Whatsapp
+  orderWhatsappBtn.addEventListener("click", () => {
+    if(Object.keys(cart).length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+    let message = "Hola,%20quiero%20realizar%20la%20siguiente%20compra:%0A";
+    for(const id in cart) {
+      const product = products.find(p => p.id === id);
+      if(!product) continue;
+      message += `- %20${cart[id]}x%20${encodeURIComponent(product.name)}%20a%20${formatPrice(product.price)}%0A`;
+    }
+    message += `%0ATotal:%20${cartTotal.textContent}`;
+    const url = `https://wa.me/5493814571285?text=${message}`;
+    window.open(url, "_blank");
+  });
 
-            let filteredProducts = products;
+  // View Store button - hides admin panel AND scrolls to products
+  document.getElementById("viewStoreBtn").addEventListener("click", () => {
+    showAdminPanel(false); // Oculta el panel de admin y cierra el carrito
+    // Desplaza la vista a la sección de productos
+    productShowcase.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 
-            if (category !== 'all') {
-                filteredProducts = filteredProducts.filter(product => product.category === category);
-            }
+  // Initialize UI
+  renderProducts(products);
+  renderAdminProductTable();
+  updateCartCount();
 
-            if (searchTerm) {
-                filteredProducts = filteredProducts.filter(product =>
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    product.description?.toLowerCase().includes(searchTerm)
-                );
-            }
+  // Hide admin panel if logged in state is false on load
+  if (isLoggedIn()) {
+    showAdminPanel(true);
+  }
 
-            if (priceRange !== 'all') {
-                const [min, max] = priceRange.split('-').map(Number);
-                if (priceRange.endsWith('+')) {
-                    filteredProducts = filteredProducts.filter(product => product.price > min);
-                } else {
-                    filteredProducts = filteredProducts.filter(product => product.price >= min && product.price <= max);
-                }
-            }
+</script>
 
-            renderProductList(filteredProducts);
-        }
-
-        // --- Image Preview ---
-        document.getElementById('productImage').addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    document.getElementById('productImagePreview').src = event.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // --- Form Submission ---
-        document.getElementById('productForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-
-            const product = {
-                name: document.getElementById('productName').value,
-                description: document.getElementById('productDescription').value,
-                price: parseFloat(document.getElementById('productPrice').value),
-                category: document.getElementById('productCategory').value,
-            };
-
-            const productId = await saveProductToFirestore(product);
-
-            if (productId) {
-                // Success notification
-                const notification = document.createElement('div');
-                notification.className = 'alert alert-success alert-dismissible fade show';
-                notification.style.position = 'fixed';
-                notification.style.bottom = '20px';
-                notification.style.right = '20px';
-                notification.style.zIndex = '1001';
-                notification.innerHTML = `
-                    <strong>¡Éxito!</strong> Producto agregado correctamente.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                `;
-                document.body.appendChild(notification);
-
-                // Reset form and update lists
-                this.reset();
-                document.getElementById('productImagePreview').src = 'https://placehold.co/300x200';
-
-                renderAdminProductList();
-                renderProductList();
-
-                // Remove notification after 3 seconds
-                setTimeout(() => {
-                    notification.remove();
-                }, 3000);
-            }
-        });
-
-        // --- Initialization ---
-        document.addEventListener('DOMContentLoaded', function () {
-            // Event listeners for filters
-            document.getElementById('categoryFilter').addEventListener('change', filterProducts);
-            document.getElementById('priceFilter').addEventListener('change', filterProducts);
-            document.getElementById('searchFilter').addEventListener('input', filterProducts);
-
-            // Initial UI setup
-            if (isLoggedIn()) {
-                showAdminSection();
-            } else {
-                showUserSection();
-            }
-        });
-
-        // Make functions accessible globally
-        window.loginAdmin = loginAdmin;
-        window.logoutAdmin = logoutAdmin;
-        window.deleteProduct = deleteProduct;
-        window.addToCart = addToCart;
-        window.removeFromCart = removeFromCart;
-        window.updateQuantity = updateQuantity;
-        window.toggleCart = toggleCart;
-        window.sendWhatsAppOrder = sendWhatsAppOrder;
-        window.showAdminSection = showAdminSection;
-        window.showUserSection = showUserSection;
-    </script>
 </body>
-
 </html>
