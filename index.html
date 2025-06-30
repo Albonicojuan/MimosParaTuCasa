@@ -536,8 +536,8 @@
 
   let filteredProducts = [...products];
   let cart = JSON.parse(localStorage.getItem("cart")) || {};
-  const adminEmail = "admin@ejemplo.com";
-  const adminPassword = "password123";
+  const adminEmail = "admin@mitienda.com";
+  const adminPassword = "admin123";
 
   // DOM references
   const productGrid = document.getElementById("productGrid");
@@ -660,8 +660,8 @@
       const img = document.createElement("img");
       img.src = p.imageUrl;
       img.alt = `Imagen producto admin: ${p.name}`;
-      img.style.width = "100px";
-      img.style.height = "70px";
+      img.style.width = "120px";
+      img.style.height = "90px";
       img.className = "object-cover rounded-md";
       img.onerror = () => img.src = "https://placehold.co/600x400?text=Imagen+no+disponible";
       imgTd.appendChild(img);
