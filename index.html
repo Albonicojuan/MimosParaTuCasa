@@ -660,8 +660,8 @@
       const img = document.createElement("img");
       img.src = p.imageUrl;
       img.alt = `Imagen producto admin: ${p.name}`;
-      img.style.width = "70px";
-      img.style.height = "45px";
+      img.style.width = "100px";
+      img.style.height = "70px";
       img.className = "object-cover rounded-md";
       img.onerror = () => img.src = "https://placehold.co/600x400?text=Imagen+no+disponible";
       imgTd.appendChild(img);
